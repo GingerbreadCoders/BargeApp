@@ -21,3 +21,9 @@ autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 twbs:bootstrap
 session
+kadira:flow-router
+kadira:blaze-layout
+ian:accounts-ui-bootstrap-3
+accounts-password
+aldeed:collection2
+aldeed:autoform
