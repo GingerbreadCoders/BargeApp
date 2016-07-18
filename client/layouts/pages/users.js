@@ -1,13 +1,11 @@
-Template.Users.onCreated(function(){
-  this.autorun (()=> {
+Template.Users.onCreated(function() {
+  this.autorun(() => {
     this.subscribe('allUsers');
-  }); 
+  });
 });
 
-Template.Users.helpers ({
-
+Template.Users.helpers({
   users: function() {
     return Meteor.users.find();
   }
-  
 });
