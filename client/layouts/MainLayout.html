@@ -1,9 +1,8 @@
 <template name='MainLayout'>
    <header>
-      <h1>Call Performer</h1>
-      {{> loginButtons}}
+      {{> navigation}}
    </header>
-   <main>
-      {{> Template.dynamic template=main}}
+   <main class='mainpagepadder'>
+      {{> Template.dynamic template=yield}}
    </main>
 </template>

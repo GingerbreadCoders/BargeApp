@@ -1,0 +1,15 @@
+<template name='Users'>
+   <h1>AdminPage</h1>
+   {{#if isInRole 'admin'}}
+      <p> You are an admin.</p>
+      {{#each users}}
+         <p>{{profile.name}}</p>
+      {{/each}}
+   {{else}}
+      <p>You are a normal user.</p>
+   {{/if}}
+   
+   {{#each user}}
+   <p>{{user.name}}</p>
+   {{/each}}
+</template>
