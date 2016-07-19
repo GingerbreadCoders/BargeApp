@@ -21,11 +21,10 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 twbs:bootstrap
 session
 raix:handlebar-helpers
+momentjs:moment
 
 kadira:flow-router
 kadira:blaze-layout
-
-useraccounts:bootstrap
 
 ian:accounts-ui-bootstrap-3
 accounts-base
@@ -37,3 +36,5 @@ msavin:mongol
 alanning:roles    
 underscore
 meteortoys:allthings
+check
+zimme:active-route
