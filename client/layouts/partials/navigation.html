@@ -16,10 +16,12 @@
 
         <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
-            <li><a href="">Add Stuff</a></li>
+            <li class="{{isActiveRoute name='scheduler'}}"><a href="/planning/scheduler/">Scheduler</a></li>
+            {{#if isInRole 'admin'}}
             <li class="{{isActiveRoute name='users'}}"><a href="/admin/users/">Users</a></li>
+            {{/if}}
           {{/if}}
-          <li><a href="#" class="navbar-link">{{> loginButtons }}</a></li>
+          <li><a href="#" class="navbar-link">{{> loginButtons}}</a></li>
 
         </ul>
 
