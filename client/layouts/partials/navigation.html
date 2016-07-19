@@ -18,6 +18,7 @@
           {{#if currentUser}}
             <li class="{{isActiveRoute name='scheduler'}}"><a href="/planning/scheduler/">Scheduler</a></li>
             {{#if isInRole 'admin'}}
+            <li class="{{isActiveRoute name='terminals'}}"><a href="/admin/terminals/">Terminals</a></li>
             <li class="{{isActiveRoute name='users'}}"><a href="/admin/users/">Users</a></li>
             {{/if}}
           {{/if}}
