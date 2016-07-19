@@ -1,41 +1,49 @@
 <template name='Users'>
-   <h1>AdminPage</h1>
-
+   
+   <div class='page-header'>
+      <h1>User admin page</h1>
+   </div> 
+   
    {{#if isInRole 'admin'}}
 
       <div class="panel-heading">
-         <h3 class="panel-title"><b>Edit Area</b></h3>
-   </div>
-   
-   <div class="panel-body">
-   
-      <form class="panel-body form-horizontal">
-      
-         <div class="form-group">
-            <label for="userid" class="col-sm-2">UserId</label>
-            <div class="col-sm-10">
-               <input type="text" class="form-control" id="userid" value="{{selectedUser._id}}" readonly>
-            </div>
-            <label for="username" class="col-sm-2">Username</label>
-            <div class="col-sm-10">
-               <input type="text" class="form-control" id="username" value="{{selectedUser.username}}" readonly>
-            </div>
-            <label for="company" class="col-sm-2">Company</label>
-            <div class="col-sm-10">
-               <input type="text" class="form-control" id="company" value="{{selectedUser.profile.company}}">
-            </div>
-            <label for="role" class="col-sm-2">Role</label>
-            <div class="col-sm-10">
-               <input type="text" class="form-control" id="role" value="{{selectedUser.roles}}">
-            </div>
-            <input type="submit" value="Submit" class="btn btn-primary submit" />
+         <div class='page-header'>
+            <h3 class="panel-title"><b>Edit Area</b></h3>
          </div>
-      
-      </form>
-               
-   </div>
+      </div>
    
-
+      <div class="panel-body">
+      
+         <form class="panel-body form-horizontal">
+      
+            <div class="form-group">
+               <label for="userid" class="col-sm-2">UserId</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" id="userid" value="{{selectedUser._id}}" readonly>
+               </div>
+               <label for="username" class="col-sm-2">Username</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" id="username" value="{{selectedUser.username}}" readonly>
+               </div>
+               <label for="company" class="col-sm-2">Company</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" id="company" value="{{selectedUser.profile.company}}">
+               </div>
+               <label for="role" class="col-sm-2">Role</label>
+               <div class="col-sm-10">
+                  <input type="text" class="form-control" id="role" value="{{selectedUser.roles}}">
+               </div>
+               <input type="submit" value="Submit" class="btn btn-primary submit" />
+            </div>
+      
+         </form>
+      
+      </div>
+      
+      <div class='page-header'>
+         <h3 class="panel-title"><b>User List</b></h3>
+      </div>
+      
       <div class="table-responsive">
          <table class='table'>
             <thead>
@@ -49,20 +57,20 @@
             </thead>
             <tbody>
                {{#each users}}
-                  <tr>
-                     <td>{{_id}}</td>
-                     <td>{{username}}</td>
-                     <td>{{dateFormat}}</td>
-                     <td>{{profile.company}}</td>
-                     <td>{{userRole}}</td>
-                     <td><button class='edit-user btn btn-danger'>edit</button></td>
-                  </tr>
+               <tr>
+                  <td>{{_id}}</td>
+                  <td>{{username}}</td>
+                  <td>{{dateFormat}}</td>
+                  <td>{{profile.company}}</td>
+                  <td>{{userRole}}</td>
+                  <td><button class='edit-user btn btn-danger'>edit</button></td>
+               </tr>
                {{/each}}
-             </tbody>
+            </tbody>
          </table>
       </div>
-   {{else}}
+      {{else}}
       <p>Sorry you have no access to this userlist.</p>
-   {{/if}}
+      {{/if}}
    
 </template>

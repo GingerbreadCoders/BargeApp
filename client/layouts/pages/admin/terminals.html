@@ -1,7 +1,38 @@
 <template name='Terminals'>
+   <div class='page-header'>
+      <h1>Terminal maintenance page</h1>
+   </div>
    
-   <h1>Here comes the Terminals maintenance page</h1>
+   {{#if isInRole 'admin'}}
+
    
-  {{> quickForm collection="Terminals" id="insertTerminalForm" type="insert"}}
+   {{> quickForm collection="Terminals" id="insertTerminalForm" type="insert"}}
+   
+   <div class='page-header'>
+      <h3 class="panel-title"><b>Terminal List</b></h3>
+   </div>
+   
+   <div class="table-responsive">
+      <table class='table'>
+         <thead>
+            <tr>
+               <th>terminalID</th>
+               <th>Terminal name</th>
+            </tr>
+         </thead>
+         <tbody>
+            {{#each terminals}}
+            <tr>
+               <td>{{_id}}</td>
+               <td>{{name}}</td>
+               <td><button class='edit-user btn btn-danger'>edit</button></td>
+            </tr>
+            {{/each}}
+         </tbody>
+      </table>
+   </div>
+   {{else}}
+   <p>Sorry you have no access to this userlist.</p>
+   {{/if}}
 
 </template>
