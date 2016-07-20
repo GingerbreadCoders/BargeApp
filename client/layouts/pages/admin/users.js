@@ -7,7 +7,7 @@ Template.Users.onCreated(function() {
 
 Template.Users.helpers({
   users: function() {
-    return Meteor.users.find();
+    return Meteor.users.find({},{sort:{username:1}});
   },
   userRole: function(){
     return this.roles[0];

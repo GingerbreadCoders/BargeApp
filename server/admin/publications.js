@@ -1,6 +1,6 @@
 Meteor.publish('allUsers', function(){
    if(Roles.userIsInRole(this.userId,'admin')) {
-      return Meteor.users.find({});
+      return Meteor.users.find({}, {sort:{company:1}});
    }
 });
 
@@ -12,7 +12,7 @@ Meteor.publish('allRoles', function(){
 
 Meteor.publish('terminals', function(){
    if(Roles.userIsInRole(this.userId, ['planner', 'admin'])) {
-      return Terminals.find({});
+      return Terminals.find({}, {sort:{name:1}});
    }
 });
 

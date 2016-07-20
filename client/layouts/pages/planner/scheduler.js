@@ -7,7 +7,7 @@ Template.Scheduler.onCreated(function() {
 
 Template.Scheduler.helpers({
    calls: function() {
-      return Calls.find();
+      return Calls.find({},{sort:{appointment:1}});
    },
    terminals: function() {
       return Terminals.find();
