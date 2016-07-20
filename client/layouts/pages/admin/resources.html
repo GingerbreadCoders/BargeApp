@@ -2,12 +2,8 @@
    <div class='page-header'>
       <h1>Register or edit resources</h1>
    </div>
-   
    {{#if Template.subscriptionsReady }} 
-   
-      
       {{#if isInRole 'admin'}}
-      
          {{#if editresources }}
             <div class="panel panel-danger">
                <div class="panel-heading">Edit the resource</div>
@@ -24,45 +20,39 @@
                </div>
             </div>
          {{/if}}
-         
-      <div class='page-header'>
-         <h3 class="panel-title"><b>Resources List</b></h3>
-      </div>
-      
-      <div class="table-responsive">
-         <table class='table'>
-            <thead>
-               <tr>
-                  <th>resourceID</th>
-                  <th>Resource name</th>
-                  <th>Owner</th>
-                  <th>Planned by</th>
-               </tr>
-            </thead>
-            <tbody>
-               {{#each resources}}
-               <tr>
-                  <td>{{_id}}</td>
-                  <td>{{name}}</td>
-                  <td>{{owner}}</td>
-                  <td>{{forcompany}}</td>
-                  <td>
-                     <button class='btn btn-primary toggle-edit'>edit</button>
-                     {{> quickRemoveButton collection="Resources" _id=this._id class='btn btn-danger'}}
-                  </td>
-               </tr>
-               {{/each}}
-            </tbody>
-         </table>
-      </div>
-      {{else}}
-      <p>Sorry you have no access to this resource list.</p>
-      {{/if}}
-         
+         <div class='page-header'>
+            <h3 class="panel-title"><b>Resources List</b></h3>
+         </div>
+         <div class="table-responsive">
+            <table class='table'>
+               <thead>
+                  <tr>
+                     <th>resourceID</th>
+                     <th>Resource name</th>
+                     <th>Owner</th>
+                     <th>Planned by</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {{#each resources}}
+                  <tr>
+                     <td>{{_id}}</td>
+                     <td>{{name}}</td>
+                     <td>{{owner}}</td>
+                     <td>{{forcompany}}</td>
+                     <td>
+                        <button class='btn btn-primary toggle-edit'>edit</button>
+                        {{> quickRemoveButton collection="Resources" _id=this._id class='btn btn-danger'}}
+                     </td>
+                  </tr>
+                  {{/each}}
+               </tbody>
+            </table>
+         </div>
+         {{else}}
+         <p>Sorry you have no access to this resource list.</p>
+         {{/if}}
    {{else}}
-   
       {{>spinner}}
-      
    {{/if}}
-   
 </template>
