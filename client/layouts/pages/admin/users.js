@@ -32,7 +32,6 @@ Template.Users.events({
     e.preventDefault();
     var currentUserId = Session.get('selecteduserdata');
     const targetCompany = e.company;
-    console.log (e.target.company.value);
     var postProperties = {
         company: e.target.company.value,
         role: e.target.role.value

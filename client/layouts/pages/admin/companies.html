@@ -1,47 +1,47 @@
-<template name='Terminals'>
+<template name='Companies'>
    <div class='page-header'>
-      <h1>Register or edit terminals</h1>
+      <h1>Register or edit companies</h1>
    </div>
    
    {{#if isInRole 'admin'}}
    
-      {{#if editterminal }}
+      {{#if editcompany }}
          <div class="panel panel-danger">
-            <div class="panel-heading">Edit the terminal</div>
+            <div class="panel-heading">Edit the company</div>
             <div class="panel-body">
-               {{> quickForm collection="Terminals" doc=selectedterminal id="updateTerminal" type="update"}}
+               {{> quickForm collection="Companies" doc=selectedcompany id="updateCompany" type="update"}}
                <button class='btn btn-danger toggle-edit-ne'>new entry mode</button>
             </div>
          </div>
       {{else}}
          <div class="panel panel-default">
-            <div class="panel-heading">Enter a new terminal</div>
+            <div class="panel-heading">Enter a new Company</div>
             <div class="panel-body">
-               {{> quickForm collection="Terminals" id="insertTerminalForm" type="insert"}}
+               {{> quickForm collection="Companies" id="insertCompanyForm" type="insert"}}
             </div>
          </div>
       {{/if}}
       
    <div class='page-header'>
-      <h3 class="panel-title"><b>Terminal List</b></h3>
+      <h3 class="panel-title"><b>Companies List</b></h3>
    </div>
    
    <div class="table-responsive">
       <table class='table'>
          <thead>
             <tr>
-               <th>terminalID</th>
-               <th>Terminal name</th>
+               <th>companyID</th>
+               <th>Company name</th>
             </tr>
          </thead>
          <tbody>
-            {{#each terminals}}
+            {{#each companies}}
             <tr>
                <td>{{_id}}</td>
                <td>{{name}}</td>
                <td>
                   <button class='btn btn-primary toggle-edit'>edit</button>
-                  {{> quickRemoveButton collection="Terminals" _id=this._id class='btn btn-danger'}}
+                  {{> quickRemoveButton collection="Companies" _id=this._id class='btn btn-danger'}}
                </td>
             </tr>
             {{/each}}
@@ -49,7 +49,7 @@
       </table>
    </div>
    {{else}}
-   <p>Sorry you have no access to this userlist.</p>
+   <p>Sorry you have no access to this Company.</p>
    {{/if}}
 
 </template>

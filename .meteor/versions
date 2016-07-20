@@ -5,6 +5,7 @@ aldeed:autoform@5.8.1
 aldeed:autoform-bs-datetimepicker@1.0.6
 aldeed:collection2@2.9.1
 aldeed:collection2-core@1.1.1
+aldeed:delete-button@2.0.0
 aldeed:moment-timezone@0.4.0
 aldeed:schema-deny@1.0.1
 aldeed:schema-index@1.0.1
@@ -98,6 +99,7 @@ reload@1.1.10
 retry@1.0.8
 routepolicy@1.0.11
 rzymek:moment-locale-nl@2.9.0
+sacha:spin@2.3.1
 service-configuration@1.0.10
 session@1.1.6
 sha@1.0.8

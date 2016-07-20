@@ -1,29 +1,29 @@
-Template.Terminals.onCreated(function() {
+Template.Companies.onCreated(function() {
    this.autorun(() => {
-      this.subscribe('terminals');
+      this.subscribe('companies');
    });
 });
 
-Template.Terminals.helpers({
-   terminals: function() {
-      return Terminals.find();
+Template.Companies.helpers({
+   companies: function() {
+      return Companies.find();
    },
-   selectedterminal: function () {
-      return Terminals.findOne(Session.get('selectedterminalid'));
+   selectedcompany: function () {
+      return Companies.findOne(Session.get('selectedcompanyid'));
    },
-   editterminal: function() {
+   editcompany: function() {
       return Session.get('editmode');
    }
 });
 
-Template.Terminals.events({
+Template.Companies.events({
    'click .toggle-edit': function() {
       if (Session.get('editmode')) {
-         Session.set('selectedterminalid', this._id);
+         Session.set('selectedcompanyid', this._id);
       }
       else {
          Session.set('editmode', true);
-         Session.set('selectedterminalid', this._id);
+         Session.set('selectedcompanyid', this._id);
       }
    },
    'click .toggle-edit-ne': function() {
@@ -34,7 +34,7 @@ Template.Terminals.events({
    'click .delete-row': function() {
       
    },
-   'submit #updateTerminal': function() {
+   'submit #updateCompany': function() {
       Session.set('editmode', false);
    }
      

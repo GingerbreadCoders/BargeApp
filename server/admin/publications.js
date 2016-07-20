@@ -4,6 +4,12 @@ Meteor.publish('allUsers', function(){
    }
 });
 
+Meteor.publish('allResourceOperators', function(){
+   if(Roles.userIsInRole(this.userId,'admin')) {
+      return Meteor.users.find({roles:'resource-operator'}, {sort:{company:1}});
+   }
+});
+
 Meteor.publish('allRoles', function(){
    if(Roles.userIsInRole(this.userId,'admin')) {
       return Meteor.roles.find({});
@@ -16,9 +22,20 @@ Meteor.publish('terminals', function(){
    }
 });
 
-Meteor.publish('calls', function(){
-   if(Roles.userIsInRole(this.userId,['planner', 'admin'])) {
-      return Calls.find({});
+Meteor.publish('companies', function(){
+   if(Roles.userIsInRole(this.userId, ['planner', 'admin'])) {
+      return Companies.find({}, {sort:{name:1}});
    }
 });
 
+Meteor.publish('resources', function(){
+   if(Roles.userIsInRole(this.userId, ['planner', 'admin'])) {
+      return Resources.find({}, {sort:{name:1}});
+   }
+});
+
+Meteor.publish('calls', function(){
+   if(Roles.userIsInRole(this.userId,['planner', 'admin'])) {
+      return Calls.find({}, {sort:{appointment:1}});
+   }
+});

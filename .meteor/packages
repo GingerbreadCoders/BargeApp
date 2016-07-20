@@ -23,6 +23,7 @@ session
 raix:handlebar-helpers
 momentjs:moment
 fortawesome:fontawesome
+sacha:spin
 
 kadira:flow-router
 kadira:blaze-layout
@@ -34,6 +35,7 @@ accounts-password
 aldeed:collection2
 aldeed:autoform
 aldeed:autoform-bs-datetimepicker
+aldeed:delete-button
 tsega:bootstrap3-datetimepicker@=3.1.3_3 
 aldeed:moment-timezone
 rzymek:moment-locale-nl
