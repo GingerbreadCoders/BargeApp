@@ -2,6 +2,7 @@ Template.Users.onCreated(function() {
   this.autorun(() => {
     this.subscribe('allUsers');
     this.subscribe('allRoles');
+    this.subscribe('companies');
   });
 });
 
@@ -9,6 +10,9 @@ Template.Users.helpers({
   users: function() {
     return Meteor.users.find({},{sort:{username:1}});
   },
+  roles: function() {
+    return Roles.getAllRoles();
+  },  
   userRole: function(){
     return this.roles[0];
   },
@@ -17,6 +21,9 @@ Template.Users.helpers({
   },
   selectedUser: function() {
     return Meteor.users.findOne(Session.get('selecteduserdata'));
+  },
+  companies: function() {
+    return Companies.find();
   }
   
 });

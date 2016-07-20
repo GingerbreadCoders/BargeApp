@@ -1,9 +1,12 @@
 if (Meteor.users.find().count() === 0) {
    var users = [
-         {name:"Scopus",email:"scopus@example.com", company: 'CTT', roles:'resource-operator'},
-         {name:"Borelli",email:"borelli@example.com", company: 'CTT', roles:'resource-operator'},
-         {name:"Roel",email:"roel@example.com", company: 'CTT', roles:'planner'},
-         {name:"Danny",email:"danny.otter@gingerbreadcoders.com", company: 'Gingerbread',roles:'admin'}
+         {name:"Danny Otter",email:"d.otter@ctt-twente.nl",roles:'admin'},
+         {name:"Ruben Vogel",email:"scopusvogel@hotmail.com",roles:'resource-operator'},
+         {name:"Patrick Hut",email:"patick@theblueworld.com",roles:'resource-operator'},
+         {name:"Sven Oomens", email:"svenoomens@vaart.net", roles:'resource-operator'},
+         {name:"Rein Schut", email:"r.schut@vaart.net", roles:'resource-operator'},
+         {name:"Roel Cloosterman",email:"r.cloosterman@ctt-twente.nl",roles:'planner'},
+         {name:"Mitchell Sikma", email:"m.sikma@ctt-twente.nl", roles: 'planner'}
        ];
    
    _.each(users, function (user) {
@@ -12,7 +15,7 @@ if (Meteor.users.find().count() === 0) {
     id = Accounts.createUser({
        password: "hoi",
        username: user.name,
-       profile: {company: user.company}
+       profile: {company: user.company, email: user.email}
     });
    
     if (user.roles.length > 0) {
