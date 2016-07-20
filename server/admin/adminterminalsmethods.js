@@ -1,8 +1,8 @@
-Meteor.methods ({
+// Meteor.methods ({
    
-   addTerminal: function(terminal) {
-      check(terminal, Terminal.simpleSchema());
+//    addTerminal: function(terminal) {
+//       check(terminal, Terminals.simpleSchema());
       
-   }
+//    }
    
-});
+// });
