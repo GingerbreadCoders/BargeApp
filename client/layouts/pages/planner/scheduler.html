@@ -1,57 +1,61 @@
 <template name='Scheduler'>
-   
    <div class='page-header'>
-      <h1>Scheduler</h1>
+      <h1>Register or edit the calls</h1>
    </div>
-   
    {{#if Template.subscriptionsReady }} 
-   
-      
-      {{#if isInRole 'admin, planner'}}
-      
-      <div class='container-fluid'>
-         
-         <div class='row'>
-            <div class="col-md-12">
-               {{> quickForm collection="Calls" id="insertCallsForm" type="insert"}}
+      {{#if isInRole 'admin'}}
+         {{#if editcalls }}
+            <div class="panel panel-danger">
+               <div class="panel-heading">Edit the call</div>
+               <div class="panel-body">
+                  {{> quickForm collection="Calls" doc=selectedcall id="updateCall" type="update"}}
+                  <button class='btn btn-danger toggle-edit-ne'>new entry mode</button>
+               </div>
             </div>
-         </div>
-      
-         <div class='page-header row'>
+         {{else}}
+            <div class="panel panel-default">
+               <div class="panel-heading">Enter a new call</div>
+               <div class="panel-body">
+                  {{> quickForm collection="Calls" id="insertCallForm" type="insert"}}
+               </div>
+            </div>
+         {{/if}}
+         <div class='page-header'>
             <h3 class="panel-title"><b>Calls List</b></h3>
          </div>
-      
-         <div class="table-responsive row">
+         <div class="table-responsive">
             <table class='table'>
                <thead>
                   <tr>
-                     <th>callsID</th>
-                     <th>Terminal name</th>
+                     <th>callID</th>
                      <th>Appointment</th>
+                     <th>Terminal name</th>
                      <th>Modality</th>
+                     <th>Resource name</th>
+                     <th>Status</th>
                   </tr>
                </thead>
                <tbody>
                   {{#each calls}}
                   <tr>
                      <td>{{_id}}</td>
+                     <td>{{formatDatetime appointment}}</td>
                      <td>{{terminalname}}</td>
-                     <td>{{appointment}}</td>
                      <td>{{modality}}</td>
-                     <td><button class='edit-user btn btn-danger'>edit</button></td>
+                     <td>{{resourcename}}</td>
+                     <td>{{status}}</td>
+                     <td>
+                        <button class='btn btn-primary toggle-edit'>edit</button> {{> quickRemoveButton collection="Calls" _id=this._id class='btn btn-danger'}}
+                     </td>
                   </tr>
                   {{/each}}
                </tbody>
             </table>
          </div>
-      </div>
-      
-      {{else}}
-      <p>Sorry you have no access to this userlist.</p>
-      {{/if}}
-      
-      {{else}}
-         {{>spinner}}
-      {{/if}}
-      
+         {{else}}
+         <p>Sorry you have no access to this calls list.</p>
+         {{/if}}
+   {{else}}
+      {{>spinner}}
+   {{/if}}
 </template>
