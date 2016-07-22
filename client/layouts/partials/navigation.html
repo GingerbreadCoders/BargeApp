@@ -16,7 +16,9 @@
 
         <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
-            <li class="{{isActiveRoute name='scheduler'}}"><a href="/planning/scheduler/">Scheduler</a></li>
+            {{#if isInRole 'admin, planner'}}
+              <li class="{{isActiveRoute name='scheduler'}}"><a href="/planning/scheduler/">Scheduler</a></li>
+            {{/if}}
             {{#if isInRole 'admin'}}
             <li class="{{isActiveRoute name='resources'}}"><a href="/admin/resources/">Resources</a></li>
             <li class="{{isActiveRoute name='companies'}}"><a href="/admin/companies/">Companies</a></li>
