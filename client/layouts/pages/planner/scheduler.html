@@ -1,7 +1,10 @@
 <template name='Scheduler'>
+   {{#animate wrap='true' type='shake' delay='100'}}
    <div class='page-header'>
       <h1>Register or edit the calls</h1>
    </div>
+   {{/animate}}
+      
    {{#if Template.subscriptionsReady }} 
       {{#if isInRole 'admin'}}
          {{#if entercalls}}
@@ -22,7 +25,7 @@
             </div>
          {{/if}}
          {{#if entercalls}}
-            <div class="panel panel-default">
+         <div class="panel panel-default">
                <div class="panel-heading">Enter a new call</div>
                <div class="panel-body">
                   {{> quickForm collection="Calls" id="insertCallForm" type="insert"}}
@@ -32,7 +35,7 @@
                <h3 class="panel-title"><b>Calls List</b></h3>
             </div>
          {{/if}}
-         {{> reactiveTable collection=calls settings=rtsettings}}
+            {{> reactiveTable collection=calls settings=rtsettings}}
       {{else}}
          <p>Sorry you have no access to this calls list.</p>
       {{/if}}
