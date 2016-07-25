@@ -29,13 +29,14 @@ Meteor.publish('companies', function(){
 });
 
 Meteor.publish('resources', function(){
-   if(Roles.userIsInRole(this.userId, ['planner', 'admin'])) {
+   if(Roles.userIsInRole(this.userId, ['planner', 'admin', 'resource-operator'])) {
       return Resources.find({}, {sort:{name:1}});
    }
 });
 
 Meteor.publish('calls', function(){
-   if(Roles.userIsInRole(this.userId,['planner', 'admin'])) {
+   if(Roles.userIsInRole(this.userId,['planner', 'admin', 'resource-operator'])) {
       return Calls.find({}, {sort:{appointment:1}});
    }
 });
+
