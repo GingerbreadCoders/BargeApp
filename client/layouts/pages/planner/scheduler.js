@@ -24,15 +24,14 @@ Template.Scheduler.helpers({
    },
    formatDatetime: function(datetime) {
       if (datetime){
-         return moment(datetime).format('DD-MM-YYYY HH:mm');
+         return moment(datetime).locale("nl").format('LLL');
       } else {
          return false;
       }
    },
    rtsettings: { fields: [
       { key: 'appointment', label: 'Appointment', fn: function(appointment, object, key){
-            moment.locale();
-            return moment(appointment).format('LLL');
+            return moment(appointment).locale("nl").format('LLL');
          } 
          
       },
@@ -41,15 +40,16 @@ Template.Scheduler.helpers({
       { key: 'resourcename', label: 'Resource name' },
       { key: 'status', label: 'Status' },
       { key: 'arrivaltime', label: 'Arrival', fn: function(arrivaltime, object, key){
-            return moment(arrivaltime).format('LLL');
+            return moment(arrivaltime).locale("nl").format('LLL');
          } 
          
       },      
       { key: 'departuretime', label: 'Departure', fn: function(departuretime, object, key){
-            return moment(departuretime).format('LLL');
+            return moment(departuretime).locale("nl").format('LLL');
          } 
          
       },
+      { key: 'archivedbyresource', label: 'Done' },
       { key: 'buttons', label: 'Buttons', tmpl: Template.buttonhelper },
    ]}
 

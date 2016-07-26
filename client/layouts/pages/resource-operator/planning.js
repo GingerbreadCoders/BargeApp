@@ -6,11 +6,10 @@ Template.Planning.onCreated(function() {
    });
 });
 
-
 Template.Planning.helpers({
    calls: function() {
       var ur = Resources.findOne({owner: Meteor.user().username});
-      return Calls.find({resourcename: ur.name},{sort:{appointment:1}});
+      return Calls.find({resourcename: ur.name, archivedbyresource: false},{sort:{appointment:1}});
    },
    terminals: function() {
       return Terminals.find();
@@ -26,10 +25,16 @@ Template.Planning.helpers({
    },
    formatDatetime: function(datetime) {
       if (datetime){
-         return moment(datetime).format('DD-MM-YYYY HH:mm');
+         return moment(datetime).locale("nl").format('LLL');
       } else {
          return false;
       }
+   },
+   authInProcess: function() {
+      return Meteor.loggingIn();
+   },
+   canShow: function() {
+      return !!Meteor.user();
    }
 });
 
@@ -66,7 +71,8 @@ Template.Planning.events({
       });
    },
    'click #archiveit': function() {
-      console.log(this._id);
+      Session.set('Archivecall', this._id);
+      FlowRouter.go('/resources/callplanning/' + this._id);
    }
    
 });

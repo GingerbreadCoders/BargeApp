@@ -1,5 +1,5 @@
 <template name='Scheduler'>
-   {{#animate wrap='true' type='shake' delay='100'}}
+   {{#animate wrap='true' type='flipInX' delay='100'}}
    <div class='page-header'>
       <h1>Register or edit the calls</h1>
    </div>
@@ -60,5 +60,6 @@
    {{!--into this file to work.--}}
    <td>
       <button class='btn btn-primary toggle-edit'>edit</button> {{> quickRemoveButton collection="Calls" _id=this._id onSuccess=onSuccess beforeRemove=beforeRemove class='btn btn-danger removecall-btn'}}
+      <button class='btn btn-success archivecall'>archive</button>
    </td>
 </template>
