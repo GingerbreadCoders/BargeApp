@@ -23,18 +23,33 @@ Template.Scheduler.helpers({
       return Session.get('entrymode');
    },
    formatDatetime: function(datetime) {
-      return moment(datetime).format('DD-MM-YYYY HH:mm');
+      if (datetime){
+         return moment(datetime).format('DD-MM-YYYY HH:mm');
+      } else {
+         return false;
+      }
    },
    rtsettings: { fields: [
-      { key: 'terminalname', label: 'Terminal name' },
       { key: 'appointment', label: 'Appointment', fn: function(appointment, object, key){
-            return moment(appointment).format('DD-MM-YYYY HH:mm');
+            moment.locale();
+            return moment(appointment).format('LLL');
          } 
          
       },
+      { key: 'terminalname', label: 'Terminal name' },
       { key: 'modality', label: 'Modality' },
       { key: 'resourcename', label: 'Resource name' },
       { key: 'status', label: 'Status' },
+      { key: 'arrivaltime', label: 'Arrival', fn: function(arrivaltime, object, key){
+            return moment(arrivaltime).format('LLL');
+         } 
+         
+      },      
+      { key: 'departuretime', label: 'Departure', fn: function(departuretime, object, key){
+            return moment(departuretime).format('LLL');
+         } 
+         
+      },
       { key: 'buttons', label: 'Buttons', tmpl: Template.buttonhelper },
    ]}
 

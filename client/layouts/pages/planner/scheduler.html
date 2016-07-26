@@ -28,14 +28,24 @@
          <div class="panel panel-default">
                <div class="panel-heading">Enter a new call</div>
                <div class="panel-body">
-                  {{> quickForm collection="Calls" id="insertCallForm" type="insert"}}
+                  {{#autoForm collection="Calls" id="insertCall" type="insert"}}
+                     <fieldset>
+                        {{> afQuickField name="terminalname"}}
+                        {{> afQuickField name="appointment"}}
+                        {{> afQuickField name="modality"}}
+                        {{> afQuickField name="resourcename"}}
+                        {{> afQuickField name="status" defaultValue="expected" readonly="true"}}
+                        {{> afQuickField name="colorpan" defaultValue="default" readonly="true"}}
+                     </fieldset>
+                     <button type='submit' class='btn btn-primary'>Insert</button>
+                  {{/autoForm}}
                </div>
             </div>
             <div class='page-header'>
                <h3 class="panel-title"><b>Calls List</b></h3>
             </div>
          {{/if}}
-            {{> reactiveTable collection=calls settings=rtsettings}}
+            {{> reactiveTable collection=calls settings=rtsettings rowsPerPage=20}}
       {{else}}
          <p>Sorry you have no access to this calls list.</p>
       {{/if}}

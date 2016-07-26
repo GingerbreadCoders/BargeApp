@@ -10,7 +10,6 @@ Template.Planning.onCreated(function() {
 Template.Planning.helpers({
    calls: function() {
       var ur = Resources.findOne({owner: Meteor.user().username});
-      console.log(ur.name);
       return Calls.find({resourcename: ur.name},{sort:{appointment:1}});
    },
    terminals: function() {
@@ -26,12 +25,12 @@ Template.Planning.helpers({
       return Session.get('entrymode');
    },
    formatDatetime: function(datetime) {
-      return moment(datetime).format('DD-MM-YYYY HH:mm');
-   },
-   activetab: function() {
-      
+      if (datetime){
+         return moment(datetime).format('DD-MM-YYYY HH:mm');
+      } else {
+         return false;
+      }
    }
-   
 });
 
 Template.Planning.events({
@@ -40,7 +39,34 @@ Template.Planning.events({
       var target = $(e.target).attr("id") // activated tab
       Session.set('selectedresource', target);
       Session.set('firstentry', false);
-  }
+  },
+     'click .arrival': function() {
+      
+      // set the right properties for an arrival
+      var callProperties = {
+         arrivaltime: Date.now(),
+         status: 'arrived',
+         colorpan: 'danger'
+      };
+      console.log(callProperties);
+      Calls.update(this._id, {
+         $set: callProperties
+      });
+   },
+   'click .departure': function() {
+      var callProperties = {
+         departuretime: Date.now(),
+         status: 'departed',
+         colorpan: 'success'
+
+      };
+      console.log(callProperties);
+      Calls.update(this._id, {
+         $set: callProperties
+      });
+   },
+   'click #archiveit': function() {
+      console.log(this._id);
+   }
    
 });
-
