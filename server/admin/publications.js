@@ -40,3 +40,14 @@ Meteor.publish('calls', function(){
    }
 });
 
+Meteor.publish('callstoday', function(){
+   var start = moment().startOf('day').toDate();
+   var end = moment().endOf('day').toDate();
+   return Calls.find({appointment: {$gte: start, $lt: end}});
+
+});
+
+Meteor.publish('callsfromtoday', function(){
+   var start = moment().startOf('day').toDate();
+   return Calls.find({appointment: {$gte: start}});
+});

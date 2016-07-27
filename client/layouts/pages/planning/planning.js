@@ -7,9 +7,12 @@ Template.Planning.onCreated(function() {
 });
 
 Template.Planning.helpers({
+   userresources: function () {
+      return Calls.find({resourcename: ur.name, archivedbyresource: false},{sort:{appointment:1}});
+   },
    calls: function() {
       var ur = Resources.findOne({owner: Meteor.user().username});
-      return Calls.find({resourcename: ur.name, archivedbyresource: false},{sort:{appointment:1}});
+      return Calls.find({resourcename: userresources.name, archivedbyresource: false},{sort:{appointment:1}});
    },
    terminals: function() {
       return Terminals.find();

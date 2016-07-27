@@ -2,12 +2,21 @@
    <header>
       {{> navigation}}
    </header>
-   <div class='container'>
-      <main class='mainpagepadder'>
+   <main class='mainpagepadder'>
+      <div class="container">
+         <h1>{{datenow}}</h1>
          <div class='routingschedule'>
-            <h1>Here comes the routingschedules ...</h1>
-            <img src='CTTNetwork.png' class='img-thumbnail'/>
+            <div class="col-md-5">
+               <div class="container">
+                  <h1>Today</h1> {{> reactiveTable class='col-md-5' showFilter=false showNavigation='never' collection=callstoday settings=rtsettingstoday rowsPerPage=20}}
+               </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+               <div class="container">
+                  <h1 class='col-md-5 col-md-offset-1'>Tomorrow and further</h1> {{> reactiveTable class='col-md-5 col-md-offset-1' showFilter=false showNavigation='never' collection=callstommorow settings=rtsettingstommorow rowsPerPage=20}}
+               </div>
+            </div>
          </div>
-      </main>
-   </div>
+      </div>
+   </main>
 </template>
