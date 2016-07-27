@@ -34,8 +34,10 @@
                         {{> afQuickField name="appointment"}}
                         {{> afQuickField name="modality"}}
                         {{> afQuickField name="resourcename"}}
-                        {{> afQuickField name="status" defaultValue="expected" readonly="true"}}
-                        {{> afQuickField name="colorpan" defaultValue="default" readonly="true"}}
+                        {{> afQuickField name="status" class="hidden" defaultValue="expected" readonly="true"}}
+                        {{> afQuickField name="colorpan" class="hidden" defaultValue="default" readonly="true"}}
+                        {{> afQuickField name="archivedbyresource" class="hidden" defaultValue=false readonly="true"}}
+                        {{> afQuickField name="archivedbyplanner" class="hidden" defaultValue=false readonly="true"}}
                      </fieldset>
                      <button type='submit' class='btn btn-primary'>Insert</button>
                   {{/autoForm}}

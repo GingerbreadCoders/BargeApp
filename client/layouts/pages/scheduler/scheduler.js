@@ -78,8 +78,14 @@ Template.Scheduler.events({
          }
       }
    },
+   'click .archivecall': function() {
+     console.log(this._id);
+     Calls.update(this._id, {$set: {archivedbyplanner: true}});
+   },
+   
    'submit #updateCall': function() {
       Session.set('editmode', false);
+      console.log(this._id);
    },
    'submit #insertCall': function() {
       Session.set('entrymode', false);

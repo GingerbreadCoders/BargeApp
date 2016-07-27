@@ -36,7 +36,7 @@ Meteor.publish('resources', function(){
 
 Meteor.publish('calls', function(){
    if(Roles.userIsInRole(this.userId,['planner', 'admin', 'resource-operator'])) {
-      return Calls.find({}, {sort:{appointment:1}});
+      return Calls.find({archivedbyplanner: false}, {sort:{appointment:1}});
    }
 });
 

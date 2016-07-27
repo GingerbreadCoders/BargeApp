@@ -1,10 +1,10 @@
-Template.Terminals.onCreated(function() {
+Template.Locations.onCreated(function() {
    this.autorun(() => {
       this.subscribe('terminals');
    });
 });
 
-Template.Terminals.helpers({
+Template.Locations.helpers({
    terminals: function() {
       return Terminals.find();
    },
@@ -16,7 +16,7 @@ Template.Terminals.helpers({
    }
 });
 
-Template.Terminals.events({
+Template.Locations.events({
    'click .toggle-edit': function() {
       if (Session.get('editmode')) {
          Session.set('selectedterminalid', this._id);
