@@ -13,6 +13,9 @@ Template.Scheduler.helpers({
    terminals: function() {
       return Terminals.find();
    },
+   resources: ()=> {
+     return Resources.find(); 
+   },
    selectedcall: function () {
     return Calls.findOne(Session.get('selectedcallid'));
    },
@@ -79,19 +82,14 @@ Template.Scheduler.events({
       }
    },
    'click .archivecall': function() {
-     console.log(this._id);
      Calls.update(this._id, {$set: {archivedbyplanner: true}});
    },
    
-   'submit #updateCall': function() {
+   'submit #updateCall': function(e) {
+      e.preventDefault();
       Session.set('editmode', false);
-      console.log(this._id);
-   },
-   'submit #insertCall': function() {
-      Session.set('entrymode', false);
    }
 });
-
 
 Template.buttonhelper.helpers({
    onError: function() {
