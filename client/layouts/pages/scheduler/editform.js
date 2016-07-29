@@ -31,6 +31,7 @@ Template.Editform.events({
    'submit': function(e) {
    e.preventDefault();
    Session.set('entrymode', false);
+   console.log(Meteor.user().profile.company);
    Calls.insert({
       terminalname: e.target.terminalname.value,
       appointment: e.target.appointment.value,

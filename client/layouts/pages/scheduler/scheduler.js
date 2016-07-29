@@ -33,25 +33,13 @@ Template.Scheduler.helpers({
       }
    },
    rtsettings: { fields: [
-      { key: 'appointment', label: 'Appointment', fn: function(appointment, object, key){
-            return moment(appointment).locale("nl").format('LLL');
-         } 
-         
-      },
+      { key: 'appointment', label: 'Appointment', tmpl: Template.appointmenthelper },
       { key: 'terminalname', label: 'Terminal name' },
       { key: 'modality', label: 'Modality' },
       { key: 'resourcename', label: 'Resource name' },
       { key: 'status', label: 'Status' },
-      { key: 'arrivaltime', label: 'Arrival', fn: function(arrivaltime, object, key){
-            return moment(arrivaltime).locale("nl").format('LLL');
-         } 
-         
-      },      
-      { key: 'departuretime', label: 'Departure', fn: function(departuretime, object, key){
-            return moment(departuretime).locale("nl").format('LLL');
-         } 
-         
-      },
+      { key: 'arrivaltime', label: 'Arrival', tmpl: Template.arrivaltimehelper },      
+      { key: 'departuretime', label: 'Departure', tmpl: Template.departuretimehelper },
       { key: 'archivedbyresource', label: 'Done' },
       { key: 'buttons', label: 'Buttons', tmpl: Template.buttonhelper },
    ]}
@@ -105,5 +93,35 @@ Template.buttonhelper.helpers({
             this.remove();
          }
       };
+   }
+});
+
+Template.appointmenthelper.helpers({
+   formatDatetime: function(datetime) {
+      if (datetime){
+         return moment(datetime).locale("nl").format('D-M-YYYY H:mm');
+      } else {
+         return false;
+      }
+   }
+});
+
+Template.arrivaltimehelper.helpers({
+   formatDatetime: function(datetime) {
+      if (datetime){
+         return moment(datetime).locale("nl").format('D-M-YYYY H:mm');
+      } else {
+         return false;
+      }
+   }
+});
+
+Template.departuretimehelper.helpers({
+   formatDatetime: function(datetime) {
+      if (datetime){
+         return moment(datetime).locale("nl").format('D-M-YYYY H:mm');
+      } else {
+         return false;
+      }
    }
 });
