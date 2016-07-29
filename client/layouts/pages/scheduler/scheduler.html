@@ -43,25 +43,3 @@
       {{>spinner}}
    {{/if}}
 </template>
-
-<template name='buttonhelper'>
-   {{!--buttonhelper is a small template to help in the scheduler.js file--}}
-   {{!--to render the buttons into a reactiveTable column. Must be included--}}
-   {{!--into this file to work.--}}
-   <td>
-      <button class='btn btn-primary toggle-edit'>edit</button> {{> quickRemoveButton collection="Calls" _id=this._id onSuccess=onSuccess beforeRemove=beforeRemove class='btn btn-danger removecall-btn'}}
-      <button class='btn btn-success archivecall'>archive</button>
-   </td>
-</template>
-
-<template name='appointmenthelper'>
-   <div class=''>{{formatDatetime appointment}}</div>
-</template>
-
-<template name='arrivaltimehelper'>
-   <div class=''>{{formatDatetime arrivaltime}}</div>
-</template>
-
-<template name='departuretimehelper'>
-   <div class=''>{{formatDatetime arrivaltime}}</div>
-</template>

@@ -36,8 +36,9 @@
                      <tr>
                         <td>{{_id}}</td>
                         <td>{{name}}</td>
+                        <td>{{type}}</td>
                         <td>
-                           <button class='btn btn-primary toggle-edit'>edit</button> {{> quickRemoveButton collection="Terminals" _id=this._id class='btn btn-danger'}}
+                           <button class='btn btn-primary fa fa-edit toggle-edit'></button> {{> quickRemoveButton collection="Terminals" _id=this._id class='btn btn-danger'}}
                         </td>
                      </tr>
                   {{/each}}

@@ -11,7 +11,7 @@
       <div class="container">
          <div class="row">
             <div class="col-md-6 container">
-               <h1>Today</h1>
+               <h1>Seaport Calls</h1>
                <div class="">
                   <table class="table table-condensed table-responsive table-bordered">
                      <thead>
@@ -27,11 +27,10 @@
                         {{#each callstoday}}
                         <tr>
                            <td class='col-md-1 text-center'><i class='{{modalityicon modality}}' aria-hidden='true'></i></td>
-                           <td class='col-md-1'>{{formattoTime appointment}}</td>
+                           <td class='col-md-2'>{{formattoDatetime appointment}}</td>
                            <td class='col-md-4'>{{terminalname}}</td>
-                           <td class='col-md-4'>{{resourcename}}</td>
+                           <td class='col-md-3'>{{resourcename}}</td>
                            <td class='col-md-2 text-center {{colorpan}}'>{{status}}</td>
-   
                         </tr>
                         {{/each}}
                      </tbody>
@@ -39,7 +38,7 @@
                </div>
             </div>
             <div class="col-md-6  container">
-               <h1>Later Calls</h1>
+               <h1>Inland Calls</h1>
                <div class="">
                   <table class="table table-condensed table-responsive table-bordered">
                      <thead>
@@ -59,7 +58,6 @@
                            <td class='col-md-4'>{{terminalname}}</td>
                            <td class='col-md-3'>{{resourcename}}</td>
                            <td class='col-md-2 text-center {{colorpan}}'>{{status}}</td>
-   
                         </tr>
                         {{/each}}
                      </tbody>

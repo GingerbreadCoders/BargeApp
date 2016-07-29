@@ -45,7 +45,7 @@ Template.HomeLayout.helpers({
       return moment(clock.get()).locale("nl").format('LLL');  
    },
    callstoday: function() {
-      var start = moment().startOf('day').toDate();
+      var start = moment().subtract(24, 'hours').toDate();
       var end = moment().endOf('day').toDate();
       return Calls.find({appointment: {$gte: start, $lt: end}},{sort:{appointment:1}});
    },

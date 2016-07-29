@@ -41,7 +41,7 @@ Meteor.publish('calls', function(){
 });
 
 Meteor.publish('callstoday', function(){
-   var start = moment().startOf('day').toDate();
+   var start = moment().subtract(24, 'hours').toDate();
    var end = moment().endOf('day').toDate();
    return Calls.find({appointment: {$gte: start, $lt: end}});
 
