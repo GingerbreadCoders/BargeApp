@@ -35,9 +35,9 @@
                                     {{#each callsseaport}}
                                     <tr>
                                        <td class='col-md-1 text-center'><i class='{{modalityicon modality}}' aria-hidden='true'></i></td>
-                                       <td class='col-md-2'>{{formattoDatetime appointment}}</td>
-                                       <td class='col-md-4'>{{locationname}}</td>
-                                       <td class='col-md-3'>{{resourcename}}</td>
+                                       <td class='col-md-2 {{colorpan}}'>{{formattoDatetime appointment}}</td>
+                                       <td class='col-md-4 {{colorpan}}'>{{locationname}}</td>
+                                       <td class='col-md-3 {{colorpan}}'>{{resourcename}}</td>
                                        <td class='col-md-2 text-center {{colorpan}}'>{{calculateStatus status appointment}}</td>
                                     </tr>
                                     {{/each}}
@@ -65,8 +65,8 @@
                                     <tr>
                                        <td class='col-md-1 text-center'><i class='{{modalityicon modality}}' aria-hidden='true'></i></td>
                                        <td class='col-md-2'>{{formattoDatetime appointment}}</td>
-                                       <td class='col-md-4'>{{locationname}}</td>
-                                       <td class='col-md-3'>{{resourcename}}</td>
+                                       <td class='col-md-4 {{colorpan}}'>{{locationname}}</td>
+                                       <td class='col-md-3 {{colorpan}}'>{{resourcename}}</td>
                                        <td class='col-md-2 text-center {{colorpan}}'>{{calculateStatus status appointment}}</td>
                                     </tr>
                                     {{/each}}
