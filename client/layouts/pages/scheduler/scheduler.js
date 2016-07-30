@@ -1,7 +1,7 @@
 Template.Scheduler.onCreated(function() {
    this.autorun(() => {
       this.subscribe('calls');
-      this.subscribe('terminals');
+      this.subscribe('locations');
       this.subscribe('resources');
    });
 });
@@ -10,8 +10,8 @@ Template.Scheduler.helpers({
    calls: function() {
       return Calls.find({},{sort:{appointment:1}});
    },
-   terminals: function() {
-      return Terminals.find();
+   locations: function() {
+      return Locations.find();
    },
    resources: ()=> {
      return Resources.find(); 
@@ -34,7 +34,7 @@ Template.Scheduler.helpers({
    },
    rtsettings: { fields: [
       { key: 'appointment', label: 'Appointment', tmpl: Template.appointmenthelper },
-      { key: 'terminalname', label: 'Terminal name' },
+      { key: 'locationname', label: 'Location name' },
       { key: 'modality', label: 'Modality' },
       { key: 'resourcename', label: 'Resource name' },
       { key: 'status', label: 'Status' },

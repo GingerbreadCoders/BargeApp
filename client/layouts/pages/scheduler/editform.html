@@ -2,11 +2,11 @@
    <form class="panel-body form-horizontal">
    
       <div class="form-group">
-         <label for="terminalname" class="col-sm-2">Terminalname</label>
+         <label for="locationname" class="col-sm-2">Location name</label>
          <div class="col-sm-10">
-            <select type="text" class="form-control" id="terminalname">
+            <select type="text" class="form-control" id="locationname">
                                  <option value='selectone'>(Select One)</option>
-                                 {{#each terminals}}
+                                 {{#each locations}}
                                     <option value={{name}}>{{name}}</option>
                                  {{/each}}
                               </select>

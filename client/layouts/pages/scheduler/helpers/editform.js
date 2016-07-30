@@ -1,7 +1,7 @@
 Template.Scheduler.onCreated(function() {
    this.autorun(() => {
       this.subscribe('calls');
-      this.subscribe('terminals');
+      this.subscribe('locations');
       this.subscribe('resources');
    });
 });
@@ -18,8 +18,8 @@ Template.Editform.helpers({
    calls: function() {
       return Calls.find({},{sort:{appointment:1}});
    },
-   terminals: function() {
-      return Terminals.find();
+   locations: function() {
+      return Locations.find();
    },
    resources: ()=> {
      return Resources.find(); 
@@ -31,11 +31,9 @@ Template.Editform.events({
    'submit': function(e) {
    e.preventDefault();
    Session.set('entrymode', false);
-   var it = Terminals.findOne({name: e.target.terminalname.value});
-   console.log(it);
-   
+   var it = Locations.findOne({name: e.target.locationname.value});
    Calls.insert({
-      terminalname: e.target.terminalname.value,
+      locationname: e.target.locationname.value,
       appointment: e.target.appointment.value,
       modality: e.target.modality.value,
       resourcename: e.target.resource.value,

@@ -1,7 +1,6 @@
 Template.Archivecall.onCreated(function() {
    this.autorun(() => {
       this.subscribe('calls');
-      // this.subscribe('terminals');
       this.subscribe('resources');
    });
 });
@@ -21,7 +20,6 @@ Template.Archivecall.helpers({
 
 Template.Archivecall.events({
    'submit': function() {
-      console.log('submitted ');
       Calls.update(Session.get('Archivecall'), {
          $set: {
             archivedbyresource: true

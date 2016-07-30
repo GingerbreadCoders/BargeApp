@@ -24,9 +24,9 @@ Meteor.publish('allRoles', function(){
    }
 });
 
-Meteor.publish('terminals', function(){
+Meteor.publish('locations', function(){
    if(Roles.userIsInRole(this.userId, ['planner', 'admin'])) {
-      return Terminals.find({}, {sort:{name:1}});
+      return Locations.find({}, {sort:{name:1}});
    }
 });
 

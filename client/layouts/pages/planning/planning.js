@@ -1,7 +1,7 @@
 Template.Planning.onCreated(function() {
    this.autorun(() => {
       this.subscribe('calls');
-      // this.subscribe('terminals');
+      this.subscribe('locations');
       this.subscribe('resources');
    });
 });
@@ -14,8 +14,8 @@ Template.Planning.helpers({
       var ur = Resources.findOne({owner: Meteor.user().username});
       return Calls.find({resourcename: ur.name, archivedbyresource: false},{sort:{appointment:1}});
    },
-   terminals: function() {
-      return Terminals.find();
+   locations: function() {
+      return Locations.find();
    },
    selectedcall: function () {
       return Calls.findOne(Session.get('selectedcallid'));
@@ -56,7 +56,6 @@ Template.Planning.events({
          status: 'arrived',
          colorpan: 'danger'
       };
-      console.log(callProperties);
       Calls.update(this._id, {
          $set: callProperties
       });
@@ -68,7 +67,6 @@ Template.Planning.events({
          colorpan: 'success'
 
       };
-      console.log(callProperties);
       Calls.update(this._id, {
          $set: callProperties
       });

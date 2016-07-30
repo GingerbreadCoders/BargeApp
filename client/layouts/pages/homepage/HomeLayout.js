@@ -73,7 +73,7 @@ Template.HomeLayout.helpers({
             return moment(appointment).locale("nl").format('H:mm');
          }
       },
-      { key: 'terminalname', label: 'Location' },
+      { key: 'locationname', label: 'Location' },
       { key: 'resourcename', label: 'Resource' },
       { key: 'status', label: 'Status' },
       { key: 'modality', label: '', tmpl: Template.Modalityhelper}
@@ -84,7 +84,7 @@ Template.HomeLayout.helpers({
             return moment(appointment).locale("nl").format('LLL');
          } 
       },
-      { key: 'terminalname', label: 'Location' },
+      { key: 'locationname', label: 'Location' },
       { key: 'resourcename', label: 'Resource' },
       { key: 'status', label: 'Status' },
       { key: 'modality', label: '', tmpl: Template.Modalityhelper}
