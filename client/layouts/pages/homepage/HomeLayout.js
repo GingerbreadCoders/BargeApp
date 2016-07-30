@@ -2,17 +2,17 @@
 var clock = new ReactiveVar(new Date());
 
 
-
 // do when the template is created
 Template.HomeLayout.onCreated( function() {
    this.autorun(() => {
       this.subscribe('currentcalls');
-   });
+  });
    Meteor.setInterval( function() {
       clock.set(new Date());
    }, 1000);
 });
 
+  
 Template.HomeLayout.helpers({
    formattoTime: function(datetime) {
       if (datetime){
@@ -59,7 +59,7 @@ Template.HomeLayout.helpers({
       }
    },
    datenow: function() {
-      return moment(clock.get()).locale("nl").format('LTS');  
+      return moment(clock.get()).locale("nl").format('LLL');  
    },
    callsinland: function() {
       return Calls.find({calltype: 'inland'},{sort:{appointment:1}});
@@ -90,3 +90,18 @@ Template.HomeLayout.helpers({
       { key: 'modality', label: '', tmpl: Template.Modalityhelper}
    ]}
 });
+
+
+Template.HomeLayout.rendered = function() {
+   $('#carousel').slick({
+      dots: true,
+      arrows: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 30000,
+      // fade: true,
+      // cssEase: 'linear'
+      // adaptiveHeight: true
+   });
+};  
