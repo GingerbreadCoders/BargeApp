@@ -30,7 +30,7 @@
                            <td class='col-md-2'>{{formattoDatetime appointment}}</td>
                            <td class='col-md-4'>{{terminalname}}</td>
                            <td class='col-md-3'>{{resourcename}}</td>
-                           <td class='col-md-2 text-center {{colorpan}}'>{{status}}</td>
+                           <td class='col-md-2 text-center {{colorpan}}'>{{calculateStatus status appointment}}</td>
                         </tr>
                         {{/each}}
                      </tbody>
@@ -57,7 +57,7 @@
                            <td class='col-md-2'>{{formattoDatetime appointment}}</td>
                            <td class='col-md-4'>{{terminalname}}</td>
                            <td class='col-md-3'>{{resourcename}}</td>
-                           <td class='col-md-2 text-center {{colorpan}}'>{{status}}</td>
+                           <td class='col-md-2 text-center {{colorpan}}'>{{calculateStatus status appointment}}</td>
                         </tr>
                         {{/each}}
                      </tbody>

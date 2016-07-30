@@ -11,9 +11,6 @@ Template.HomeLayout.onCreated( function() {
    Meteor.setInterval( function() {
       clock.set(new Date());
    }, 1000);
-   // Meteor.setInterval( function() {
-   //    window.location.reload();
-   // }, 60000);
 });
 
 Template.HomeLayout.helpers({
@@ -42,6 +39,23 @@ Template.HomeLayout.helpers({
             case 'truck':
             return 'fa fa-truck';
             break;
+      }
+   },
+   calculateStatus: function(status, appointment) {
+      switch (status) {
+         case 'arrived':
+            return status
+            break;
+         case 'departed':
+            return status
+            break;
+         case 'expected':
+            if (appointment < Date.now()) {
+               return 'delayed'
+               break;
+            } else {
+               return status;
+         }
       }
    },
    datenow: function() {
