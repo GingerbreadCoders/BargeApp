@@ -1,3 +1,11 @@
+var start = new ReactiveVar(moment().subtract(24, 'hours').toDate());
+var end = new ReactiveVar(moment().add(24, 'hours').toDate());
+
+Meteor.setInterval( function() {
+   start.set(moment().subtract(24, 'hours').toDate());
+   end.set(moment().add(24, 'hours').toDate());
+}, 60000);
+
 Meteor.publish('allUsers', function(){
    if(Roles.userIsInRole(this.userId,'admin')) {
       return Meteor.users.find({}, {sort:{company:1}});
@@ -40,14 +48,10 @@ Meteor.publish('calls', function(){
    }
 });
 
-Meteor.publish('callstoday', function(){
-   var start = moment().subtract(24, 'hours').toDate();
-   var end = moment().endOf('day').toDate();
-   return Calls.find({appointment: {$gte: start, $lt: end}});
-
+Meteor.publish('currentcalls', function() {
+   this.autorun(function (computation) {
+      return Calls.find({appointment: {$gte: start.get(), $lt: end.get()}});
+  });
 });
 
-Meteor.publish('callsfromtoday', function(){
-   var start = moment().startOf('day').toDate();
-   return Calls.find({appointment: {$gte: start}});
-});
+

@@ -1,16 +1,19 @@
 // reactive variables
 var clock = new ReactiveVar(new Date());
 
+
+
 // do when the template is created
 Template.HomeLayout.onCreated( function() {
    this.autorun(() => {
-      this.subscribe('callstoday');
-      this.subscribe('callsfromtoday');
+      this.subscribe('currentcalls');
    });
-   
-Meteor.setInterval( function() {
+   Meteor.setInterval( function() {
       clock.set(new Date());
    }, 1000);
+   // Meteor.setInterval( function() {
+   //    window.location.reload();
+   // }, 60000);
 });
 
 Template.HomeLayout.helpers({
@@ -23,7 +26,7 @@ Template.HomeLayout.helpers({
    },
    formattoDatetime: function(datetime) {
       if (datetime){
-         return moment(datetime).locale("nl").format('DD-MM hh:mm');
+         return moment(datetime).locale("nl").format('DD-MM HH:mm');
       } else {
          return false;
       }
@@ -42,16 +45,13 @@ Template.HomeLayout.helpers({
       }
    },
    datenow: function() {
-      return moment(clock.get()).locale("nl").format('LLL');  
+      return moment(clock.get()).locale("nl").format('LTS');  
    },
-   callstoday: function() {
-      var start = moment().subtract(24, 'hours').toDate();
-      var end = moment().endOf('day').toDate();
-      return Calls.find({appointment: {$gte: start, $lt: end}},{sort:{appointment:1}});
+   callsinland: function() {
+      return Calls.find({calltype: 'inland'},{sort:{appointment:1}});
    },
-   callstommorow: function() {
-      var start = moment().endOf('day').toDate();
-      return Calls.find({appointment: {$gte: start}},{sort:{appointment:1}});
+   callsseaport: function() {
+      return Calls.find({calltype: 'seaport'},{sort:{appointment:1}});
    },
    rtsettingstoday: { fields: [
       

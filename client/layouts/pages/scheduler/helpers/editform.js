@@ -31,7 +31,9 @@ Template.Editform.events({
    'submit': function(e) {
    e.preventDefault();
    Session.set('entrymode', false);
-   console.log(Meteor.user().profile.company);
+   var it = Terminals.findOne({name: e.target.terminalname.value});
+   console.log(it);
+   
    Calls.insert({
       terminalname: e.target.terminalname.value,
       appointment: e.target.appointment.value,
@@ -42,7 +44,8 @@ Template.Editform.events({
       archivedbyresource: false,
       archivedbyplanner: false,
       callowner: Meteor.user().username,
-      callcompany: Meteor.user().profile.company
+      callcompany: Meteor.user().profile.company,
+      calltype: it.type
    });
    Session.set('entrymode', false);
    }
