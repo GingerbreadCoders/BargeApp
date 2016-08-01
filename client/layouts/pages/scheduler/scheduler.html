@@ -1,0 +1,45 @@
+<template name='Scheduler'>
+   {{#animate wrap='true' type='flipInX' delay='100'}}
+   <div class='page-header'>
+      <h1>Register or edit the calls</h1>
+   </div>
+   {{/animate}}
+      
+   {{#if Template.subscriptionsReady }} 
+      {{#if isInRole 'admin, planner'}}
+         {{#if entercalls}}
+            <div class='panel'>
+               <button class='btn btn-default newentry-btn'>filter only mode</button>
+            </div>
+         {{else}}
+            <div class='panel'>
+               <button class='btn btn-default newentry-btn'>new entry mode</button>
+            </div>
+         {{/if}}
+         {{#if editcalls }}
+            <div class="panel panel-danger">
+               <div class="panel-heading">Edit the call</div>
+               <div class="panel-body">
+                  {{> quickForm collection="Calls" doc=selectedcall id="updateCall" type="update"}}
+               </div>
+            </div>
+         {{/if}}
+         {{#if entercalls}}
+            <div class="panel panel-default">
+               <div class="panel-heading">Enter a new call</div>
+               <div class="panel-body">
+                  {{> Editform}}
+               </div>
+            </div>
+            <div class='page-header'>
+               <h3 class="panel-title"><b>Calls List</b></h3>
+            </div>
+         {{/if}}
+            {{> reactiveTable collection=calls settings=rtsettings rowsPerPage=20}}
+      {{else}}
+         <p>Sorry you have no access to this calls list.</p>
+      {{/if}}
+   {{else}}
+      {{>spinner}}
+   {{/if}}
+</template>

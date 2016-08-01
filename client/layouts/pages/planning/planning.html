@@ -1,0 +1,63 @@
+<template name='Planning'>
+   {{#animate wrap='true' type='flipInX' delay='100'}}
+   <div class='page-header'>
+      <h1>Your calls</h1>
+   </div>
+   {{/animate}}
+      
+   {{#if Template.subscriptionsReady }}
+
+      {{#if isInRole 'admin, resource-operator'}}
+
+      <div class="container">
+         {{#each calls}}
+         <div class="col-sm-6">
+            <div class="panel panel-{{colorpan}}">
+               <div class="panel-heading">
+                  <h3 class="panel-title"><b>{{locationname}}</b> at {{formatDatetime appointment}} ({{status}})</h3>
+               </div>
+         
+               <div class="panel-body">
+         
+                  <form class="panel-body form-horizontal">
+         
+                     <div class="form-group">
+                        <label for="arrivaltime" class="col-sm-5">Arrival time</label>
+                        <div class="col-sm-7">
+                           <input type="text" class="form-control" id="arrivaltime" value="{{formatDatetime arrivaltime}}" readonly>
+                        </div>
+                        <label for="departuretime" class="col-sm-5">Departure time</label>
+                        <div class="col-sm-7">
+                           <input type="text" class="form-control" id="departuretime" value="{{formatDatetime departuretime}}" readonly>
+                        </div>
+                     </div>
+         
+                  </form>
+         
+                  <div class="row">
+                     <div class="col-sm-5 col-xs-5">
+                        <button class="btn btn-danger arrival">arrival</button>
+                     </div>
+                     <div class="col-sm-5 col-xs-5">
+                        <button class="btn btn-success departure">departure</button>
+                     </div>
+                     <button type="col-sm-2 col-xs-2 button" class="btn btn-default" id="archiveit">
+                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                  </button>
+                  </div>
+         
+               </div>
+            </div>
+         </div>
+         {{/each}}
+      </div>
+
+      {{else}}
+         <p>Sorry you have no access to this calls list.</p>
+      {{/if}}
+
+   {{else}}
+      {{>spinner}}
+   {{/if}}
+   
+</template>

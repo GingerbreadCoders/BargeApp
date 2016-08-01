@@ -1,0 +1,54 @@
+<template name='Locations'>
+   <div class='page-header'>
+      <h1>Register or edit locations</h1>
+   </div>
+   {{#if Template.subscriptionsReady }}
+      {{#if isInRole 'admin'}}
+         {{#if editlocation }}
+            <div class="panel panel-danger">
+               <div class="panel-heading">Edit the location</div>
+               <div class="panel-body">
+                  {{> quickForm collection="Locations" doc=selectedlocations id="updateLocation" type="update"}}
+                  <button class='btn btn-danger toggle-edit-ne'>new entry mode</button>
+               </div>
+            </div>
+         {{else}}
+            <div class="panel panel-default">
+               <div class="panel-heading">Enter a new location</div>
+               <div class="panel-body">
+                  {{> quickForm collection="Locations" id="insertLocationForm" type="insert"}}
+               </div>
+            </div>
+         {{/if}}
+         <div class='page-header'>
+            <h3 class="panel-title"><b>Location List</b></h3>
+         </div>
+         <div class="table-responsive">
+            <table class='table'>
+               <thead>
+                  <tr>
+                     <th>locationID</th>
+                     <th>Location name</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {{#each locations}}
+                     <tr>
+                        <td>{{_id}}</td>
+                        <td>{{name}}</td>
+                        <td>{{type}}</td>
+                        <td>
+                           <button class='btn btn-primary fa fa-edit toggle-edit'></button> {{> quickRemoveButton collection="Locations" _id=this._id class='btn btn-danger'}}
+                        </td>
+                     </tr>
+                  {{/each}}
+               </tbody>
+            </table>
+         </div>
+      {{else}}
+         <p>Sorry you have no access to this location list.</p>
+      {{/if}}
+   {{else}}
+      {{>spinner}}
+   {{/if}}
+</template>
