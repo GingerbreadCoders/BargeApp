@@ -27,7 +27,7 @@
                                        <th>time</th>
                                        <th>location</th>
                                        <th>resource</th>
-                                       <th>status</th>
+                                       <th class="text-center">status</th>
                                     </tr>
                                  </thead>
                                  <tbody>
@@ -56,7 +56,7 @@
                                        <th>time</th>
                                        <th>location</th>
                                        <th>resource</th>
-                                       <th>status</th>
+                                       <th class="text-center">status</th>
                                        <th>ETA</th>
                                     </tr>
                                  </thead>
@@ -69,7 +69,7 @@
                                        <td class='col-md-3 {{colorpan}}'>{{locationname}}</td>
                                        <td class='col-md-2 {{colorpan}}'>{{resourcename}}</td>
                                        <td class='col-md-2 text-center {{colorpan}}'>{{calculateStatus status appointment}}</td>
-                                       <td class='col-md-2'>{{formattoDatetime appointment}}</td>
+                                       <td class='col-md-2'>{{formattoDatetime etafromresource}}</td>
                                     </tr>
                                     {{/each}}
                                     {{else}} {{spinner}} {{/if}}
