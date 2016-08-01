@@ -99,7 +99,7 @@ Template.HomeLayout.rendered = function() {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 30000,
+      autoplaySpeed: 15000,
       // fade: true,
       // cssEase: 'linear'
       // adaptiveHeight: true
