@@ -1,3 +1,11 @@
+var start = new ReactiveVar(moment().subtract(24, 'hours').toDate());
+var end = new ReactiveVar(moment().add(24, 'hours').toDate());
+
+Meteor.setInterval( function() {
+   start.set(moment().subtract(24, 'hours').toDate());
+   end.set(moment().add(24, 'hours').toDate());
+}, 60000);
+
 Meteor.publish('allUsers', function(){
    if(Roles.userIsInRole(this.userId,'admin')) {
       return Meteor.users.find({}, {sort:{company:1}});
@@ -16,9 +24,9 @@ Meteor.publish('allRoles', function(){
    }
 });
 
-Meteor.publish('terminals', function(){
+Meteor.publish('locations', function(){
    if(Roles.userIsInRole(this.userId, ['planner', 'admin'])) {
-      return Terminals.find({}, {sort:{name:1}});
+      return Locations.find({}, {sort:{name:1}});
    }
 });
 
@@ -39,4 +47,11 @@ Meteor.publish('calls', function(){
       return Calls.find({archivedbyplanner: false}, {sort:{appointment:1}});
    }
 });
+
+Meteor.publish('currentcalls', function() {
+   this.autorun(function (computation) {
+      return Calls.find({appointment: {$gte: start.get(), $lt: end.get()}});
+  });
+});
+
 

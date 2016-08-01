@@ -1,7 +1,7 @@
 Template.Scheduler.onCreated(function() {
    this.autorun(() => {
       this.subscribe('calls');
-      this.subscribe('terminals');
+      this.subscribe('locations');
       this.subscribe('resources');
    });
 });
@@ -10,8 +10,11 @@ Template.Scheduler.helpers({
    calls: function() {
       return Calls.find({},{sort:{appointment:1}});
    },
-   terminals: function() {
-      return Terminals.find();
+   locations: function() {
+      return Locations.find();
+   },
+   resources: ()=> {
+     return Resources.find(); 
    },
    selectedcall: function () {
     return Calls.findOne(Session.get('selectedcallid'));
@@ -30,25 +33,13 @@ Template.Scheduler.helpers({
       }
    },
    rtsettings: { fields: [
-      { key: 'appointment', label: 'Appointment', fn: function(appointment, object, key){
-            return moment(appointment).locale("nl").format('LLL');
-         } 
-         
-      },
-      { key: 'terminalname', label: 'Terminal name' },
+      { key: 'appointment', label: 'Appointment', tmpl: Template.appointmenthelper },
+      { key: 'locationname', label: 'Location name' },
       { key: 'modality', label: 'Modality' },
       { key: 'resourcename', label: 'Resource name' },
       { key: 'status', label: 'Status' },
-      { key: 'arrivaltime', label: 'Arrival', fn: function(arrivaltime, object, key){
-            return moment(arrivaltime).locale("nl").format('LLL');
-         } 
-         
-      },      
-      { key: 'departuretime', label: 'Departure', fn: function(departuretime, object, key){
-            return moment(departuretime).locale("nl").format('LLL');
-         } 
-         
-      },
+      { key: 'arrivaltime', label: 'Arrival', tmpl: Template.arrivaltimehelper },      
+      { key: 'departuretime', label: 'Departure', tmpl: Template.departuretimehelper },
       { key: 'archivedbyresource', label: 'Done' },
       { key: 'buttons', label: 'Buttons', tmpl: Template.buttonhelper },
    ]}
@@ -79,33 +70,11 @@ Template.Scheduler.events({
       }
    },
    'click .archivecall': function() {
-     console.log(this._id);
      Calls.update(this._id, {$set: {archivedbyplanner: true}});
    },
    
-   'submit #updateCall': function() {
+   'submit #updateCall': function(e) {
+      e.preventDefault();
       Session.set('editmode', false);
-      console.log(this._id);
-   },
-   'submit #insertCall': function() {
-      Session.set('entrymode', false);
-   }
-});
-
-
-Template.buttonhelper.helpers({
-   onError: function() {
-      return function(error) {
-         alert("Record is not deleted!");
-         console.log(error);
-      };
-   },
-   beforeRemove: function() {
-      return function(Calls, id) {
-         var doc = Calls.findOne(id);
-         if (confirm('Really delete "' + doc.terminalname + '"?')) {
-            this.remove();
-         }
-      };
    }
 });

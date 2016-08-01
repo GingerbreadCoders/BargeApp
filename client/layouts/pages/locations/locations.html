@@ -4,11 +4,11 @@
    </div>
    {{#if Template.subscriptionsReady }}
       {{#if isInRole 'admin'}}
-         {{#if editterminal }}
+         {{#if editlocation }}
             <div class="panel panel-danger">
                <div class="panel-heading">Edit the location</div>
                <div class="panel-body">
-                  {{> quickForm collection="Terminals" doc=selectedterminal id="updateTerminal" type="update"}}
+                  {{> quickForm collection="Locations" doc=selectedlocations id="updateLocation" type="update"}}
                   <button class='btn btn-danger toggle-edit-ne'>new entry mode</button>
                </div>
             </div>
@@ -16,7 +16,7 @@
             <div class="panel panel-default">
                <div class="panel-heading">Enter a new location</div>
                <div class="panel-body">
-                  {{> quickForm collection="Terminals" id="insertTerminalForm" type="insert"}}
+                  {{> quickForm collection="Locations" id="insertLocationForm" type="insert"}}
                </div>
             </div>
          {{/if}}
@@ -27,17 +27,18 @@
             <table class='table'>
                <thead>
                   <tr>
-                     <th>terminalID</th>
+                     <th>locationID</th>
                      <th>Location name</th>
                   </tr>
                </thead>
                <tbody>
-                  {{#each terminals}}
+                  {{#each locations}}
                      <tr>
                         <td>{{_id}}</td>
                         <td>{{name}}</td>
+                        <td>{{type}}</td>
                         <td>
-                           <button class='btn btn-primary toggle-edit'>edit</button> {{> quickRemoveButton collection="Terminals" _id=this._id class='btn btn-danger'}}
+                           <button class='btn btn-primary fa fa-edit toggle-edit'></button> {{> quickRemoveButton collection="Locations" _id=this._id class='btn btn-danger'}}
                         </td>
                      </tr>
                   {{/each}}

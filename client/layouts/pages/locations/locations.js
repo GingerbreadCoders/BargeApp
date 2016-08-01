@@ -1,17 +1,17 @@
 Template.Locations.onCreated(function() {
    this.autorun(() => {
-      this.subscribe('terminals');
+      this.subscribe('locations');
    });
 });
 
 Template.Locations.helpers({
-   terminals: function() {
-      return Terminals.find();
+   locations: function() {
+      return Locations.find();
    },
-   selectedterminal: function () {
-      return Terminals.findOne(Session.get('selectedterminalid'));
+   selectedlocation: function () {
+      return Locations.findOne(Session.get('selectedlocationid'));
    },
-   editterminal: function() {
+   editlocation: function() {
       return Session.get('editmode');
    }
 });
@@ -19,11 +19,11 @@ Template.Locations.helpers({
 Template.Locations.events({
    'click .toggle-edit': function() {
       if (Session.get('editmode')) {
-         Session.set('selectedterminalid', this._id);
+         Session.set('selectedlocationid', this._id);
       }
       else {
          Session.set('editmode', true);
-         Session.set('selectedterminalid', this._id);
+         Session.set('selectedlocationid', this._id);
       }
    },
    'click .toggle-edit-ne': function() {
@@ -34,7 +34,7 @@ Template.Locations.events({
    'click .delete-row': function() {
       
    },
-   'submit #updateTerminal': function() {
+   'submit #updateLocation': function() {
       Session.set('editmode', false);
    }
      

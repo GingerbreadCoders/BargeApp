@@ -25,22 +25,10 @@
             </div>
          {{/if}}
          {{#if entercalls}}
-         <div class="panel panel-default">
+            <div class="panel panel-default">
                <div class="panel-heading">Enter a new call</div>
                <div class="panel-body">
-                  {{#autoForm collection="Calls" id="insertCall" type="insert"}}
-                     <fieldset>
-                        {{> afQuickField name="terminalname"}}
-                        {{> afQuickField name="appointment"}}
-                        {{> afQuickField name="modality"}}
-                        {{> afQuickField name="resourcename"}}
-                        {{> afQuickField name="status" class="hidden" defaultValue="expected" readonly="true"}}
-                        {{> afQuickField name="colorpan" class="hidden" defaultValue="default" readonly="true"}}
-                        {{> afQuickField name="archivedbyresource" class="hidden" defaultValue=false readonly="true"}}
-                        {{> afQuickField name="archivedbyplanner" class="hidden" defaultValue=false readonly="true"}}
-                     </fieldset>
-                     <button type='submit' class='btn btn-primary'>Insert</button>
-                  {{/autoForm}}
+                  {{> Editform}}
                </div>
             </div>
             <div class='page-header'>
@@ -54,14 +42,4 @@
    {{else}}
       {{>spinner}}
    {{/if}}
-</template>
-
-<template name='buttonhelper'>
-   {{!--buttonhelper is a small template to help in the scheduler.js file--}}
-   {{!--to render the buttons into a reactiveTable column. Must be included--}}
-   {{!--into this file to work.--}}
-   <td>
-      <button class='btn btn-primary toggle-edit'>edit</button> {{> quickRemoveButton collection="Calls" _id=this._id onSuccess=onSuccess beforeRemove=beforeRemove class='btn btn-danger removecall-btn'}}
-      <button class='btn btn-success archivecall'>archive</button>
-   </td>
 </template>
