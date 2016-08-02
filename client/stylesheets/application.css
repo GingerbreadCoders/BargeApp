@@ -21,3 +21,8 @@
 .slick-prev:before, .slick-next:before {
   color:    silver;
 }
+
+.narrowtablefont {
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+}

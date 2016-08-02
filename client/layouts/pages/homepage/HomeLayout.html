@@ -17,7 +17,39 @@
                <div class='carouselcontent-1'>
                   <div class="container">
                      <div class="row">
-                        <div class="col-md-5 container">
+                        <div class="col-md-7  container">
+                           <h1>Inland Calls</h1>
+                           <div class="">
+                              <table class="table table-condensed table-responsive table-bordered">
+                                 <thead>
+                                    <tr>
+                                       <th></th>
+                                       <th>time</th>
+                                       <th>location</th>
+                                       <th>resource</th>
+                                       <th class="text-center">status</th>
+                                       <th>ETA</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody class="narrowtablefont">
+                                    {{#if Template.subscriptionsReady}}
+                                    {{#each callsinland}}
+                                    <tr>
+                                       <td class='col-xs-1 col-md-1 text-center'><i class='{{modalityicon modality}}' aria-hidden='true'></i></td>
+                                       <td class='col-xs-2 col-md-2'>{{formattoDatetime appointment}}</td>
+                                       <td class='col-xs-3 col-md-3 {{colorpan}}'>{{locationname}}</td>
+                                       <td class='col-xs-2 col-md-2 {{colorpan}}'>{{resourcename}}</td>
+                                       <td class='col-xs-2 col-md-2 text-center {{colorpan}}'>{{calculateStatus status appointment}}</td>
+                                       <td class='col-xs-2 col-md-2'>{{formattoDatetime etafromresource}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    {{else}} {{spinner}} {{/if}}
+
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+<div class="col-md-5 container">
                            <h1>Seaport Calls</h1>
                            <div class="">
                               <table class="table table-condensed table-responsive table-bordered">
@@ -30,7 +62,7 @@
                                        <th class="text-center">status</th>
                                     </tr>
                                  </thead>
-                                 <tbody>
+                                 <tbody class='narrowtablefont'>
                                     {{#if Template.subscriptionsReady}}
                                     {{#each callsseaport}}
                                     <tr>
@@ -46,52 +78,11 @@
                               </table>
                            </div>
                         </div>
-                        <div class="col-md-7  container">
-                           <h1>Inland Calls</h1>
-                           <div class="">
-                              <table class="table table-condensed table-responsive table-bordered">
-                                 <thead>
-                                    <tr>
-                                       <th></th>
-                                       <th>time</th>
-                                       <th>location</th>
-                                       <th>resource</th>
-                                       <th class="text-center">status</th>
-                                       <th>ETA</th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                    {{#if Template.subscriptionsReady}}
-                                    {{#each callsinland}}
-                                    <tr>
-                                       <td class='col-md-1 text-center'><i class='{{modalityicon modality}}' aria-hidden='true'></i></td>
-                                       <td class='col-md-2'>{{formattoDatetime appointment}}</td>
-                                       <td class='col-md-3 {{colorpan}}'>{{locationname}}</td>
-                                       <td class='col-md-2 {{colorpan}}'>{{resourcename}}</td>
-                                       <td class='col-md-2 text-center {{colorpan}}'>{{calculateStatus status appointment}}</td>
-                                       <td class='col-md-2'>{{formattoDatetime etafromresource}}</td>
-                                    </tr>
-                                    {{/each}}
-                                    {{else}} {{spinner}} {{/if}}
-
-                                 </tbody>
-                              </table>
-                           </div>
-                        </div>
+                        
                      </div>
                   </div>
                </div>
                <div class='carouselcontent-2'>
-                  <div class="container col-md-6">
-                     <div class="panel panel-warning">
-                        <div class="panel-heading">
-                           <i class="panel-title fa fa-meh-o fa-3x" aria-hidden="true"> 46%</i>
-                        </div>
-                        <div class="panel-body">
-                           <b>Seaport performance index</b>
-                        </div>
-                     </div>
-                  </div>
                   <div class="container col-md-6">
                      <div class="panel panel-success">
                         <div class="panel-heading">
@@ -99,6 +90,16 @@
                         </div>
                         <div class="panel-body">
                            <b>Inland performance index</b>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="container col-md-6">
+                     <div class="panel panel-warning">
+                        <div class="panel-heading">
+                           <i class="panel-title fa fa-meh-o fa-3x" aria-hidden="true"> 46%</i>
+                        </div>
+                        <div class="panel-body">
+                           <b>Seaport performance index</b>
                         </div>
                      </div>
                   </div>
