@@ -1,19 +1,12 @@
-Template.Scheduler.onCreated(function() {
-   this.autorun(() => {
-      this.subscribe('calls');
-      this.subscribe('locations');
-      this.subscribe('resources');
-   });
-});
 
-Template.Editform.onRendered(function() {
+Template.Entryform.onRendered(function() {
     this.$('.datetimepicker').datetimepicker({
        format: 'LLL',
        language: 'nl'
     });
 });
 
-Template.Editform.helpers({
+Template.Entryform.helpers({
 
    calls: function() {
       return Calls.find({},{sort:{appointment:1}});
@@ -27,7 +20,7 @@ Template.Editform.helpers({
 
 });
 
-Template.Editform.events({
+Template.Entryform.events({
    'submit': function(e) {
    e.preventDefault();
    Session.set('entrymode', false);

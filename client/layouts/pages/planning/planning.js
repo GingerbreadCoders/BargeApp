@@ -7,6 +7,13 @@ Template.Planning.onCreated(function() {
 });
 
 Template.Planning.helpers({
+   inlandlocationcheck: function(type) {
+      if (type !== 'inland') {
+         return false;
+      } else {
+         return true;
+      }
+   },
    userresources: function () {
       return Calls.find({resourcename: ur.name, archivedbyresource: false},{sort:{appointment:1}});
    },
