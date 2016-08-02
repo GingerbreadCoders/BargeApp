@@ -3,7 +3,7 @@ var end = new ReactiveVar(moment().add(24, 'hours').toDate());
 
 Meteor.setInterval( function() {
    start.set(moment().subtract(24, 'hours').toDate());
-   end.set(moment().add(24, 'hours').toDate());
+   end.set(moment().add(36, 'hours').toDate());
 }, 60000);
 
 Meteor.publish('allUsers', function(){
