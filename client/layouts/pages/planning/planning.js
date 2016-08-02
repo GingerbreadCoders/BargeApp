@@ -1,7 +1,7 @@
 Template.Planning.onCreated(function() {
    this.autorun(() => {
       this.subscribe('calls');
-      this.subscribe('locations');
+      // this.subscribe('locations');
       this.subscribe('resources');
    });
 });
@@ -80,7 +80,11 @@ Template.Planning.events({
    },
    'click #archiveit': function() {
       Session.set('Archivecall', this._id);
-      FlowRouter.go('/resources/callplanning/' + this._id);
-   }
-   
+      FlowRouter.go('/resources/callplanning/archive/' + this._id);
+   },
+   'click #submiteta': function() {
+      Session.set('submitETAcall', this._id);
+      FlowRouter.go('/resources/callplanning/submitETA/' + this._id);
+      console.log('eta submitted');
+   }   
 });

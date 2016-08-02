@@ -1,7 +1,6 @@
 Template.Archivecall.onCreated(function() {
    this.autorun(() => {
       this.subscribe('calls');
-      this.subscribe('resources');
    });
 });
 

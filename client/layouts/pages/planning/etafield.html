@@ -1,0 +1,12 @@
+<template name='Etafield'>
+    
+    {{#if isInRole 'admin, resource-operator'}}
+    
+    <div class="col-xs-8 col-sm-10 datetimepicker">
+        <input type="text" class="form-control" id="etafromresource" value="{{formatDatetime etafromresource}}" />
+    </div>
+    <input type="submit" value="Submit ETA" id="submiteta" class="btn btn-primary submiteta" /> 
+    
+    {{/if}}
+        
+</template>

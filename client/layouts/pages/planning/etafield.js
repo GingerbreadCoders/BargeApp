@@ -1,6 +1,9 @@
 
 Template.Etafield.onRendered(function() {
-    this.$('.datetimepicker').datetimepicker();
+    this.$('.datetimepicker').datetimepicker({
+       format: 'LLL',
+       language: 'nl'
+    });
 });
 
 Template.Etafield.helpers({
@@ -11,4 +14,8 @@ Template.Etafield.helpers({
          return false;
       }
    }
+});
+
+Template.Etafield.events({
+
 });

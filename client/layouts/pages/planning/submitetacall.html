@@ -1,0 +1,41 @@
+<template name='Submitetacall'>
+
+   {{#animate wrap='true' type='flipInX' delay='100'}}
+   <div class='page-header'>
+      <h1>Submit your ETA</h1>
+   </div>
+   {{/animate}}
+   
+         
+   {{#if Template.subscriptionsReady }} 
+
+      {{#if isInRole 'admin, resource-operator'}}
+
+   
+         {{#with call}}
+   
+            <h3><b>{{locationname}}</b> at {{formatDatetime appointment}} ({{status}})</h3>
+   
+            {{#autoForm collection="Calls" id="archiveCall" type="update" doc=this}}
+   
+               <fieldset class='container'>
+                  <div class='row'>
+                     {{> afQuickField name="etafromresource"}}
+                  </div>
+               </fieldset>
+   
+               <button type='submit' class='btn btn-primary '>Submit</button>
+   
+            {{/autoForm}}
+   
+         {{/with}}
+      
+      {{else}}
+         <p>Sorry you have no access to this record.</p>
+      {{/if}}
+
+   {{else}}
+      {{>spinner}}
+   {{/if}}
+
+</template>
