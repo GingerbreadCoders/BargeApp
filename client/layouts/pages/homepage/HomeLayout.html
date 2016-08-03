@@ -5,12 +5,6 @@
    
    <main class='mainpagepadder'>
    
-   
-      <div class="container">
-         <h1>{{datenow}}</h1>
-      </div>
-   
-
       <div class="container">
          <div class="row">
             <div id="carousel">
@@ -28,7 +22,7 @@
                                        <th>location</th>
                                        <th>resource</th>
                                        <th class="text-center">status</th>
-                                       <th>ETA</th>
+                                       <th>eta / ata / atd</th>
                                     </tr>
                                  </thead>
                                  <tbody class="narrowtablefont">
@@ -40,7 +34,7 @@
                                        <td class='col-xs-3 col-md-3 {{colorpan}}'>{{locationname}}</td>
                                        <td class='col-xs-2 col-md-2 {{colorpan}}'>{{resourcename}}</td>
                                        <td class='col-xs-2 col-md-2 text-center {{colorpan}}'>{{calculateStatus status appointment}}</td>
-                                       <td class='col-xs-2 col-md-2'>{{formattoDatetime etafromresource}}</td>
+                                       <td class='col-xs-2 col-md-2 {{colorpan}}'>{{etafield status etafromresource arrivaltime departuretime}}</td>
                                     </tr>
                                     {{/each}}
                                     {{else}} {{spinner}} {{/if}}
@@ -107,6 +101,11 @@
             </div>
          </div>
       </div>
+      
+      <div class="container">
+         <h4>{{datenow}}</h4>
+      </div>
+   
    </main>
 
 </template>

@@ -61,7 +61,7 @@ Template.Planning.events({
       var callProperties = {
          arrivaltime: Date.now(),
          status: 'arrived',
-         colorpan: 'danger'
+         colorpan: 'info'
       };
       Calls.update(this._id, {
          $set: callProperties

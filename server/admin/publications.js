@@ -1,5 +1,5 @@
 var start = new ReactiveVar(moment().subtract(24, 'hours').toDate());
-var end = new ReactiveVar(moment().add(24, 'hours').toDate());
+var end = new ReactiveVar(moment().add(36, 'hours').toDate());
 
 Meteor.setInterval( function() {
    start.set(moment().subtract(24, 'hours').toDate());

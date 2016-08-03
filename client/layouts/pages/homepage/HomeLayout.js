@@ -14,6 +14,26 @@ Template.HomeLayout.onCreated( function() {
 
   
 Template.HomeLayout.helpers({
+   etafield: function (status, eta, ata, atd) {
+      console.log(status, eta,ata, atd);
+      switch(status) {
+         case 'expected':
+         case 'delayed' :
+            if (eta) {
+               return moment(eta).locale("nl").format('DD-MM HH:mm');
+               break;
+            } else {
+               return 'not received';
+               break;
+            }
+         case 'arrived'            :
+            return moment(ata).locale("nl").format('DD-MM HH:mm');
+            break;
+         case 'departed':
+            return moment(atd).locale("nl").format('DD-MM HH:mm');
+            break;
+      }
+   },
    formattoTime: function(datetime) {
       if (datetime){
          return moment(datetime).locale("nl").format('LT');
@@ -36,7 +56,7 @@ Template.HomeLayout.helpers({
          case 'rail':
             return 'fa fa-train';
             break;
-            case 'truck':
+         case 'truck':
             return 'fa fa-truck';
             break;
       }
@@ -99,7 +119,7 @@ Template.HomeLayout.rendered = function() {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 8000,
+      autoplaySpeed: 15000,
       // fade: true,
       // cssEase: 'linear'
       // adaptiveHeight: true
