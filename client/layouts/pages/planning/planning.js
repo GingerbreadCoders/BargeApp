@@ -85,6 +85,5 @@ Template.Planning.events({
    'click #submiteta': function() {
       Session.set('submitETAcall', this._id);
       FlowRouter.go('/resources/callplanning/submitETA/' + this._id);
-      console.log('eta submitted');
    }   
 });

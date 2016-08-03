@@ -19,12 +19,6 @@ Template.Submitetacall.helpers({
 
 Template.Submitetacall.events({
    'submit': function() {
-       console.log('etafromresource');
-    //   Calls.update(Session.get('submitETAcall'), {
-    //      $set: {
-    //         archivedbyresource: true
-    //      }
-    //   });
       FlowRouter.go('/resources/callplanning');
    }
 });

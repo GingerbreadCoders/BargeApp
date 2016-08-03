@@ -15,7 +15,6 @@ Template.HomeLayout.onCreated( function() {
   
 Template.HomeLayout.helpers({
    etafield: function (status, eta, ata, atd) {
-      console.log(status, eta,ata, atd);
       switch(status) {
          case 'expected':
          case 'delayed' :
