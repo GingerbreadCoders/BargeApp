@@ -1,23 +1,26 @@
-// reactive variables
+// setting a reactive variable to hold he current datetime
 var clock = new ReactiveVar(new Date());
 
 
 // do when the template is created
-Template.HomeLayout.onCreated( function() {
+// subscription to the currentcalls publication
+// and update the reactivevariable every second.
+Template.HomeLayout.onCreated(function() {
    this.autorun(() => {
       this.subscribe('currentcalls');
-  });
-   Meteor.setInterval( function() {
+   });
+   Meteor.setInterval(function() {
       clock.set(new Date());
    }, 1000);
 });
 
-  
+
+// helpers for the HomeLayout template
 Template.HomeLayout.helpers({
-   etafield: function (status, eta, ata, atd) {
-      switch(status) {
+   etafield: function(status, eta, ata, atd) {
+      switch (status) {
          case 'expected':
-         case 'delayed' :
+         case 'delayed':
             if (eta) {
                return moment(eta).locale("nl").format('DD-MM HH:mm');
                break;
@@ -25,7 +28,7 @@ Template.HomeLayout.helpers({
                return 'not received';
                break;
             }
-         case 'arrived'            :
+         case 'arrived':
             return moment(ata).locale("nl").format('DD-MM HH:mm');
             break;
          case 'departed':
@@ -33,15 +36,8 @@ Template.HomeLayout.helpers({
             break;
       }
    },
-   formattoTime: function(datetime) {
-      if (datetime){
-         return moment(datetime).locale("nl").format('LT');
-      } else {
-         return false;
-      }
-   },
    formattoDatetime: function(datetime) {
-      if (datetime){
+      if (datetime) {
          return moment(datetime).locale("nl").format('DD-MM HH:mm');
       } else {
          return false;
@@ -60,57 +56,52 @@ Template.HomeLayout.helpers({
             break;
       }
    },
+   // calculateStatus uses the clock reactivevar to have it change
+   // reactively. It is ran with each clock.set
    calculateStatus: function(status, appointment) {
       switch (status) {
          case 'arrived':
-            return status
+            return status;
             break;
          case 'departed':
-            return status
+            return status;
             break;
          case 'expected':
-            if (appointment < Date.now()) {
-               return 'delayed'
+            if (appointment < clock.get()) {
+               return 'delayed';
                break;
             } else {
                return status;
-         }
+            }
       }
    },
    datenow: function() {
-      return moment(clock.get()).locale("nl").format('LLL');  
+      return moment(clock.get()).locale("nl").format('LLL');
    },
    callsinland: function() {
-      return Calls.find({calltype: 'inland'},{sort:{appointment:1}});
+      return Calls.find({
+         calltype: 'inland'
+      }, {
+         sort: {
+            appointment: 1
+         }
+      });
    },
    callsseaport: function() {
-      return Calls.find({calltype: 'seaport'},{sort:{appointment:1}});
-   },
-   rtsettingstoday: { fields: [
-      
-      { key: 'appointment', label: 'Time', fn: function(appointment, object, key){
-            return moment(appointment).locale("nl").format('H:mm');
+      return Calls.find({
+         calltype: 'seaport'
+      }, {
+         sort: {
+            appointment: 1
          }
-      },
-      { key: 'locationname', label: 'Location' },
-      { key: 'resourcename', label: 'Resource' },
-      { key: 'status', label: 'Status' },
-      { key: 'modality', label: '', tmpl: Template.Modalityhelper}
-   ]},
-   rtsettingstommorow: { fields: [
-      
-      { key: 'appointment', label: 'Time', fn: function(appointment, object, key){
-            return moment(appointment).locale("nl").format('LLL');
-         } 
-      },
-      { key: 'locationname', label: 'Location' },
-      { key: 'resourcename', label: 'Resource' },
-      { key: 'status', label: 'Status' },
-      { key: 'modality', label: '', tmpl: Template.Modalityhelper}
-   ]}
+      });
+   }
 });
 
 
+// Caroussel uses the udondan:slick package
+// will be rendered into the HomeLayout template
+// by attaching it to the id:#carousel
 Template.HomeLayout.rendered = function() {
    $('#carousel').slick({
       dots: true,
@@ -119,8 +110,5 @@ Template.HomeLayout.rendered = function() {
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 15000,
-      // fade: true,
-      // cssEase: 'linear'
-      // adaptiveHeight: true
    });
-};  
+};
