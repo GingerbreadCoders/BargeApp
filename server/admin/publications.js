@@ -6,6 +6,10 @@ Meteor.setInterval( function() {
    end.set(moment().add(36, 'hours').toDate());
 }, 60000);
 
+SimpleRest.configure({
+  collections: ['calls', 'resources', 'locations']
+});
+
 Meteor.publish('allUsers', function(){
    if(Roles.userIsInRole(this.userId,'admin')) {
       return Meteor.users.find({}, {sort:{company:1}});
