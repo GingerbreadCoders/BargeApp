@@ -21,7 +21,7 @@ Template.Entryform.helpers({
 });
 
 Template.Entryform.events({
-   'submit': function(e) {
+   'submit #submitnewentry': function(e) {
    e.preventDefault();
    Session.set('entrymode', false);
    var it = Locations.findOne({name: e.target.locationname.value});
