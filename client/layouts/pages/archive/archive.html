@@ -1,0 +1,19 @@
+<template name='Archive'>
+
+   {{#animate wrap='true' type='flipInX' delay='100'}}
+   <div class='page-header'>
+      <h1>Archived calls for resource operator</h1>
+   </div>
+   {{/animate}}
+      
+   {{#if Template.subscriptionsReady }} 
+      {{#if isInRole 'admin, resource-operator'}}
+         {{> reactiveTable collection=archivedcalls settings=rtsettings rowsPerPage=20}}
+      {{else}}
+         <p>Sorry you have no access to this calls list.</p>
+      {{/if}}
+   {{else}}
+      {{>spinner}}
+   {{/if}}
+
+</template>

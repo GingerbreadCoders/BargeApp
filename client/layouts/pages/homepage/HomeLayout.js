@@ -56,7 +56,7 @@ Template.HomeLayout.helpers({
             break;
       }
    },
-   // calculateStatus uses the clock reactivevar to have it change
+   // calculateStatus uses the ReactiveVar <clock> to have it change
    // reactively. It is ran with each clock.set
    calculateStatus: function(status, appointment) {
       switch (status) {
