@@ -21,7 +21,7 @@ Template.HomeLayout.onCreated(function() {
             Bert.alert({
               title: call.resourcename,
               message: fields.status+', at '+call.locationname,
-              icon: 'fa-check-square-o',
+              icon: 'fa-thumbs-up',
             });
          }
       }
@@ -32,6 +32,7 @@ Template.HomeLayout.onCreated(function() {
 
 // helpers for the HomeLayout template
 Template.HomeLayout.helpers({
+   // provides the proper displayvalue according to the status of the call
    etafield: function(status, eta, ata, atd) {
       switch (status) {
          case 'expected':
@@ -51,6 +52,8 @@ Template.HomeLayout.helpers({
             break;
       }
    },
+   // formats a datetime into dutch locale, take a datetime and returns it
+   //  formatted.
    formattoDatetime: function(datetime) {
       if (datetime) {
          return moment(datetime).locale("nl").format('DD-MM HH:mm');
@@ -58,6 +61,7 @@ Template.HomeLayout.helpers({
          return false;
       }
    },
+   // each to his own modality icon
    modalityicon: function(modality) {
       switch (modality) {
          case 'barge':
@@ -90,9 +94,12 @@ Template.HomeLayout.helpers({
             }
       }
    },
+   //get the current datetime and format into Dutch locale
    datenow: function() {
       return moment(clock.get()).locale("nl").format('LLL');
    },
+   // makes a list of calls at an inland terminal available to
+   // render into the template
    callsinland: function() {
       return Calls.find({
          calltype: 'inland'
@@ -102,6 +109,7 @@ Template.HomeLayout.helpers({
          }
       });
    },
+   // makes a list of calls at a seaport available to render into the template
    callsseaport: function() {
       return Calls.find({
          calltype: 'seaport'
