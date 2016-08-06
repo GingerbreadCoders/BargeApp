@@ -3,10 +3,10 @@
       <h1>Register or edit companies</h1>
    </div>
 
-   {{#if Template.subscriptionsReady }} 
-      
+   {{#if Template.subscriptionsReady }}
+
       {{#if isInRole 'admin'}}
-      
+
          {{#if editcompany }}
             <div class="panel panel-danger">
                <div class="panel-heading">Edit the company</div>
@@ -23,11 +23,11 @@
                </div>
             </div>
          {{/if}}
-         
+
       <div class='page-header'>
          <h3 class="panel-title"><b>Companies List</b></h3>
       </div>
-      
+
       <div class="table-responsive">
          <table class='table'>
             <thead>
@@ -38,14 +38,7 @@
             </thead>
             <tbody>
                {{#each companies}}
-               <tr>
-                  <td>{{_id}}</td>
-                  <td>{{name}}</td>
-                  <td>
-                     <button class='btn btn-primary toggle-edit'>edit</button>
-                     {{> quickRemoveButton collection="Companies" _id=this._id class='btn btn-danger'}}
-                  </td>
-               </tr>
+                  {{> companylist}}
                {{/each}}
             </tbody>
          </table>
@@ -53,11 +46,11 @@
       {{else}}
       <p>Sorry you have no access to this company list.</p>
       {{/if}}
-   
+
    {{else}}
-   
+
       {{>spinner}}
-      
+
    {{/if}}
 
 </template>

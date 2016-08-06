@@ -8,7 +8,7 @@ Template.Resources.onCreated(function() {
 
 Template.Resources.helpers({
    resources: function() {
-      return Resources.find();
+      return Resources.find({},{sort:{name:1}});
    },
    selectedresource: function () {
       return Resources.findOne(Session.get('selectedresourceid'));
@@ -21,10 +21,12 @@ Template.Resources.helpers({
 Template.Resources.events({
    'click .toggle-edit': function() {
       if (Session.get('editmode')) {
+         console.log(this.id);
          Session.set('selectedresourceid', this._id);
       }
       else {
          Session.set('editmode', true);
+         console.log(this.id);
          Session.set('selectedresourceid', this._id);
       }
    },
@@ -34,10 +36,10 @@ Template.Resources.events({
       }
    },
    'click .delete-row': function() {
-      
+
    },
    'submit #updateResource': function() {
       Session.set('editmode', false);
    }
-     
+
 });

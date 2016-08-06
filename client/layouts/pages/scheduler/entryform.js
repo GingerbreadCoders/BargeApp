@@ -12,10 +12,10 @@ Template.Entryform.helpers({
       return Calls.find({},{sort:{appointment:1}});
    },
    locations: function() {
-      return Locations.find();
+      return Locations.find({},{sort:{name:1}});
    },
    resources: ()=> {
-     return Resources.find(); 
+     return Resources.find({},{sort:{name:1}});
    }
 
 });
@@ -41,4 +41,4 @@ Template.Entryform.events({
    Session.set('entrymode', false);
    }
 });
-   
+

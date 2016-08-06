@@ -1,3 +1,5 @@
+// var sorting = new ReactiveVar(1);
+
 Template.Companies.onCreated(function() {
    this.autorun(() => {
       this.subscribe('companies');
@@ -6,7 +8,7 @@ Template.Companies.onCreated(function() {
 
 Template.Companies.helpers({
    companies: function() {
-      return Companies.find();
+      return Companies.find({},{sort: {name: 1}});
    },
    selectedcompany: function () {
       return Companies.findOne(Session.get('selectedcompanyid'));
@@ -32,10 +34,12 @@ Template.Companies.events({
       }
    },
    'click .delete-row': function() {
-      
+
    },
    'submit #updateCompany': function() {
       Session.set('editmode', false);
+      // sorting.set(-1);
+      // sorting.set(1);
    }
-     
+
 });

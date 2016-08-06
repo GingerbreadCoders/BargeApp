@@ -12,6 +12,18 @@ Template.HomeLayout.onCreated(function() {
    Meteor.setInterval(function() {
       clock.set(new Date());
    }, 1000);
+
+   // setting an info alert upon the status change of the call.
+   Calls.find({}).observeChanges({
+      changed: function(id, fields) {
+         if (fields.status) {
+            var call = Calls.findOne(id);
+
+            Bert.alert(call.resourcename+' '+fields.status+', at '+call.locationname, 'info', 'growl-bottom-right');
+         }
+      }
+   });
+
 });
 
 

@@ -1,0 +1,11 @@
+<template name="companylist">
+
+   <tr>
+      <td>{{_id}}</td>
+      <td>{{name}}</td>
+      <td>
+         <button class='btn btn-primary toggle-edit'>edit</button> {{> quickRemoveButton collection="Companies" _id=this._id class='btn btn-danger'}}
+      </td>
+   </tr>
+
+</template>

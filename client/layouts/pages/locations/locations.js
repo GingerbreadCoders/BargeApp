@@ -6,7 +6,7 @@ Template.Locations.onCreated(function() {
 
 Template.Locations.helpers({
    locations: function() {
-      return Locations.find();
+         return Locations.find({},{sort: {name: 1}});
    },
    selectedlocation: function () {
       return Locations.findOne(Session.get('selectedlocationid'));
@@ -32,10 +32,10 @@ Template.Locations.events({
       }
    },
    'click .delete-row': function() {
-      
+
    },
    'submit #updateLocation': function() {
       Session.set('editmode', false);
    }
-     
+
 });
