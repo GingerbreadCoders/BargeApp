@@ -18,8 +18,11 @@ Template.HomeLayout.onCreated(function() {
       changed: function(id, fields) {
          if (fields.status) {
             var call = Calls.findOne(id);
-
-            Bert.alert(call.resourcename+' '+fields.status+', at '+call.locationname, 'info', 'growl-bottom-right');
+            Bert.alert({
+              title: call.resourcename,
+              message: fields.status+', at '+call.locationname,
+              icon: 'fa-check-square-o',
+            });
          }
       }
    });
