@@ -1,6 +1,6 @@
 <template name='Entryform'>
    <form class="panel-body form-horizontal" id="submitnewentry">
-   
+
       <div class="form-group">
          <label for="locationname" class="col-sm-2">Location name</label>
          <div class="col-sm-10">
@@ -12,11 +12,12 @@
                               </select>
          </div>
          <label for="appointment" class="col-sm-2">Appointment</label>
-         <div class="datetimepicker">
+         <div class="">
             <div class="col-sm-10">
-               <input class="set-due-date form-control" id="appointment" type="text" />
+               <input type="text" class="form-control datetimepicker" data-DateTimePicker name="appointment" placeholder="Pick a Date">
             </div>
          </div>
+
          <label for="modality" class="col-sm-2">Modality</label>
          <div class="col-sm-10">
             <select type="text" class="form-control" id="modality">
@@ -37,7 +38,7 @@
          </div>
          <input type="submit" value="Submit" class="btn btn-primary" />
       </div>
-   
+
    </form>
-   
-</template>                     
+
+</template>

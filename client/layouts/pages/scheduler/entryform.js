@@ -2,8 +2,8 @@
 Template.Entryform.onRendered(function() {
     this.$('.datetimepicker').datetimepicker({
        format: 'LLL',
-       language: 'nl'
-    });
+       locale: 'nl'
+   });
 });
 
 Template.Entryform.helpers({
@@ -17,28 +17,33 @@ Template.Entryform.helpers({
    resources: ()=> {
      return Resources.find({},{sort:{name:1}});
    }
-
 });
 
 Template.Entryform.events({
-   'submit #submitnewentry': function(e) {
-   e.preventDefault();
-   Session.set('entrymode', false);
-   var it = Locations.findOne({name: e.target.locationname.value});
-   Calls.insert({
-      locationname: e.target.locationname.value,
-      appointment: e.target.appointment.value,
-      modality: e.target.modality.value,
-      resourcename: e.target.resource.value,
-      status: "expected",
-      colorpan: "default",
-      archivedbyresource: false,
-      archivedbyplanner: false,
-      callowner: Meteor.user().username,
-      callcompany: Meteor.user().profile.company,
-      calltype: it.type
-   });
-   Session.set('entrymode', false);
+   'submit #submitnewentry': function(e, template) {
+      e.preventDefault();
+      var datetbc = e.target.appointment.value;
+      // var formatted = moment(datetbc).format('LLL');
+      console.log(datetbc);
+
+      var it = Locations.findOne({name: e.target.locationname.value});
+
+      console.log(it.type);
+
+      Calls.insert({
+         locationname: e.target.locationname.value,
+         appointment: e.target.appointment.value,
+         modality: e.target.modality.value,
+         resourcename: e.target.resource.value,
+         status: "expected",
+         colorpan: "default",
+         archivedbyresource: false,
+         archivedbyplanner: false,
+         callowner: Meteor.user().username,
+         callcompany: Meteor.user().profile.company,
+         calltype: it.type
+      });
+      Session.set('entrymode', false);
    }
 });
 
